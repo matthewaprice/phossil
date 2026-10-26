@@ -4,6 +4,8 @@ A small PHP site with routing and components that builds to plain static HTML.
 
 While you develop, nginx sends every page request to `app/index.php` and PHP renders it. To deploy, `composer build` requests every route from that same nginx and saves the responses to `dist/`, which any static host can serve. No PHP runs in production.
 
+[Full Documentation - https://phossil.dev](https://phossil.dev)
+
 ## Why
 
 I build a lot of sites, and I would rather write them in PHP, with typed components and views, than in a JS framework.
