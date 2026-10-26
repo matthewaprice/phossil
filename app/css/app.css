@@ -1,0 +1,21 @@
+@import "tailwindcss" source(none);
+
+/* Classes are only ever written in the PHP templates */
+@source "../**/*.php";
+
+@layer base {
+  body {
+    background-color: var(--color-slate-50);
+    color: var(--color-slate-700);
+  }
+
+  /* Inline code, but not code blocks */
+  :not(pre) > code {
+    @apply rounded bg-slate-100 px-1 py-0.5 text-[0.875em] text-slate-800;
+  }
+}
+
+/* The centred page column */
+@utility shell {
+  @apply mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8;
+}

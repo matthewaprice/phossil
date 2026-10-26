@@ -1,0 +1,7 @@
+FROM node:24-alpine
+
+RUN npm install -g pnpm@10.30.2
+
+COPY entrypoint.sh /entrypoint.sh
+
+CMD ["sh", "/entrypoint.sh"]

@@ -1,0 +1,31 @@
+name: phossil
+
+services:
+  # Renders the pages. nginx hands it every request that is not an asset.
+  php:
+    image: php:8.5-fpm
+    working_dir: /srv
+    volumes:
+      - ./app:/srv/app
+      - ./vendor:/srv/vendor
+      - ./dist:/srv/dist
+  nginx:
+    image: nginx:1.29
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/srv/app:ro
+      - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php
+  # The Vite dev server: serves the CSS and JS with hot reload while it runs.
+  vite:
+    build: ./docker/vite
+    init: true
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./app:/srv/app
+      - ./vite.config.js:/srv/vite.config.js:ro
+      - ./package.json:/srv/package.json:ro
+      - ./pnpm-lock.yaml:/srv/pnpm-lock.yaml:ro

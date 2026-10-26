@@ -1,0 +1,29 @@
+{
+    "name": "matthewprice/phossil",
+    "description": "A small PHP site with routing and components that builds to static HTML.",
+    "authors": [
+        {
+            "name": "Matthew Price",
+            "email": "matthew@matthewaprice.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Components\\": "app/components/",
+            "App\\Enums\\": "app/enums/",
+            "App\\Services\\": "app/services/",
+            "App\\Support\\": "app/support/",
+            "App\\Views\\": "app/views/"
+        }
+    },
+    "scripts": {
+        "build": "pnpm build && docker compose exec php php app/includes/build.php && pnpm format:build",
+        "build:zip": [
+            "@build",
+            "rm -f build.zip && cd dist && zip -rq ../dist.zip . -x '.*' '*/.*'"
+        ]
+    }
+}
