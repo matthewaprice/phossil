@@ -12,18 +12,18 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\Components\\": "app/components/",
-            "App\\Enums\\": "app/enums/",
-            "App\\Services\\": "app/services/",
-            "App\\Support\\": "app/support/",
-            "App\\Views\\": "app/views/"
+            "Phossil\\Components\\": "phossil/components/",
+            "Phossil\\Enums\\": "phossil/enums/",
+            "Phossil\\Services\\": "phossil/services/",
+            "Phossil\\Support\\": "phossil/support/",
+            "Phossil\\Views\\": "phossil/views/"
         }
     },
     "scripts": {
-        "build": "pnpm build && docker compose exec php php app/includes/build.php && pnpm format:build",
+        "build": "pnpm build && docker compose exec php php phossil/includes/build.php && pnpm format:build",
         "build:zip": [
             "@build",
-            "rm -f build.zip && cd dist && zip -rq ../dist.zip . -x '.*' '*/.*'"
+            "rm -f dist.zip && cd dist && zip -rq ../dist.zip . -x '.*' '*/.*'"
         ]
     }
 }
