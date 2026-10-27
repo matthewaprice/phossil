@@ -2,11 +2,12 @@
 
 A small PHP site with routing and components that builds to plain static HTML.
 
-While you develop, nginx sends every page request to `app/index.php` and PHP renders it. To deploy, `composer build` requests every route from that same nginx and saves the responses to `dist/`, which any static host can serve. No PHP runs in production.
+While you develop, nginx sends every page request to `phossil/index.php` and PHP renders it. To deploy, `composer build` requests every route from that same nginx and saves the responses to `dist/`, which any static host can serve. No PHP runs in production.
 
 [Full Documentation - https://phossil.dev](https://phossil.dev)
 
 ## Why
+
 I love PHP, and I wanted the same <code>dist/</code> workflow JavaScript developers take for
 granted. phossil gives you one, and it covers two kinds of projects:
 
@@ -33,7 +34,7 @@ docker compose up --build
 
 Open http://localhost:8000.
 
-The `vite` container runs the Vite dev server on port 5173. Pages load `app/css/app.css` (Tailwind) and `app/js/app.js` from it, so CSS and JS changes appear without a reload, and saving a PHP file reloads the page.
+The `vite` container runs the Vite dev server on port 5173. Pages load `phossil/css/app.css` (Tailwind) and `phossil/js/app.js` from it, so CSS and JS changes appear without a reload, and saving a PHP file reloads the page.
 
 ## Build
 
@@ -41,11 +42,11 @@ The `vite` container runs the Vite dev server on port 5173. Pages load `app/css/
 composer build:zip
 ```
 
-This runs `pnpm build` (`vite build`, into `app/dist/`), then empties `dist/`, renders each route to `dist/<route>/index.html`, writes the 404 page to `dist/404.html`, and copies the CSS, JS and images to `dist/assets/`. The pages always link the built, hashed files, even while the dev server runs.
+This runs `pnpm build` (`vite build`, into `phossil/dist/`), then empties `dist/`, renders each route to `dist/<route>/index.html`, writes the 404 page to `dist/404.html`, and copies the CSS, JS and images to `dist/assets/`. The pages always link the built, hashed files, even while the dev server runs.
 
 The built HTML is then tidied with oxfmt.
 
-You get a build.zip at the root of the repo to upload to, for example, AWS Amplify.
+You get a dist.zip at the root of the repo to upload to, for example, AWS Amplify.
 
 ## Format and lint
 
@@ -53,24 +54,24 @@ You get a build.zip at the root of the repo to upload to, for example, AWS Ampli
 pnpm format        # oxfmt: JS, CSS, JSON, Markdown
 pnpm format:check  # the same, without writing
 pnpm format:build. # run on the built dist folder
-pnpm lint          # oxlint: app/js
+pnpm lint          # oxlint: phossil/js
 ```
 
 ## How it fits together
 
-| Path                         | What it does                                                                                                                             |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `app/index.php`              | Front controller: loads the app and hands the request to the router.                                                                     |
-| `app/includes/bootstrap.php` | Loads config, the autoloader, helpers and routes, without handling a request. The build uses it too.                                     |
-| `app/routes/web.php`         | The list of paths and the view each one renders. Add a page here.                                                                        |
-| `app/services/Router/`       | Matches the request path to a route and echoes its view, or the 404 view.                                                                |
-| `app/components/`            | `View` (base class for pages), `Layout` (page chrome), and small components (`Anchor`, `Card`), each configured by an `*Options` object. |
-| `app/views/`                 | One folder per page.                                                                                                                     |
-| `app/services/Build.php`     | Crawls the routes through nginx and writes `dist/`.                                                                                      |
-| `app/includes/build.php`     | The script `composer build` runs inside the php container.                                                                               |
-| `app/support/Vite.php`       | Behind the `vite()` helper: links the dev server while it runs, or the hashed files from Vite's manifest.                                |
-| `vite.config.js`             | The Vite entries, Tailwind, and the dev server settings for running in Docker.                                                           |
-| `docker/nginx/site.conf`     | Serves `/assets/*` from `app/img/` and `app/dist/`, and sends every other URL to `index.php`. No other file under `app/` is reachable.   |
+| Path                             | What it does                                                                                                                                       |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `phossil/index.php`              | Front controller: loads the app and hands the request to the router.                                                                               |
+| `phossil/includes/bootstrap.php` | Loads config, the autoloader, helpers and routes, without handling a request. The build uses it too.                                               |
+| `phossil/routes/web.php`         | The list of paths and the view each one renders. Add a page here.                                                                                  |
+| `phossil/services/Router/`       | Matches the request path to a route and echoes its view, or the 404 view.                                                                          |
+| `phossil/components/`            | `View` (base class for pages), `Layout` (page chrome), and small components (`Anchor`, `Card`), each configured by an `*Options` object.           |
+| `phossil/views/`                 | One folder per page.                                                                                                                               |
+| `phossil/services/Build.php`     | Crawls the routes through nginx and writes `dist/`.                                                                                                |
+| `phossil/includes/build.php`     | The script `composer build` runs inside the php container.                                                                                         |
+| `phossil/support/Vite.php`       | Behind the `vite()` helper: links the dev server while it runs, or the hashed files from Vite's manifest.                                          |
+| `vite.config.js`                 | The Vite entries, Tailwind, and the dev server settings for running in Docker.                                                                     |
+| `docker/nginx/site.conf`         | Serves `/assets/*` from `phossil/img/` and `phossil/dist/`, and sends every other URL to `index.php`. No other file under `phossil/` is reachable. |
 
 ### Assets
 
@@ -80,8 +81,8 @@ Images are served as they are. Templates link them with `asset('img/favicon.svg'
 
 ### Adding a page
 
-1. Create `app/views/MyNewPage/MyNewPage.php`, a `readonly` class extending `App\Components\View`. Copy `About.php` as a starting point.
-2. Add `new RouteType(path: 'my-new-page', view: MyNewPage::class)` to `app/routes/web.php`.
+1. Create `phossil/views/MyNewPage/MyNewPage.php`, a `readonly` class extending `Phossil\Components\View`. Copy `About.php` as a starting point.
+2. Add `new RouteType(path: 'my-new-page', view: MyNewPage::class)` to `phossil/routes/web.php`.
 3. Optionally, add it to `Layout::NAV`.
 
 It is served at `/my-new-page/` straight away, and the next `composer build` writes `dist/my-new-page/index.html`.
