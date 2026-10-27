@@ -17,12 +17,12 @@ readonly class Banner extends View
     {
         return $this->capture(function() {
             ?>
-            <section class="bg-slate-900 text-white">
+            <section class="bg-zinc-900 text-white">
                 <div class="shell py-20">
                     <h1 class="max-w-2xl text-4xl font-bold tracking-tight text-balance sm:text-5xl">
-                        Write it in PHP. Ship it as HTML.
+                        Write it in PHP. <span class="text-primary-400">Ship it as HTML.</span>
                     </h1>
-                    <p class="mt-6 max-w-xl text-lg text-slate-300">
+                    <p class="mt-6 max-w-xl text-lg text-zinc-400">
                         Routes, views and components while you develop; a folder of plain files when you deploy.
                     </p>
                     <div class="mt-8 flex flex-wrap gap-3">
@@ -31,7 +31,7 @@ readonly class Banner extends View
                             new AnchorOptions(
                                 href: '/about/',
                                 text: 'How it works',
-                                class: Buttons::make(Buttons::Large)
+                                class: Buttons::make(Buttons::Large, Buttons::Primary)
                             )
                         );
 
@@ -51,7 +51,7 @@ readonly class Banner extends View
             Dialog::create(
                 new DialogOptions(
                     title: 'Hello from a dialog',
-                    content: '<p class="text-slate-600">' . e( 'This markup was rendered by the Dialog component and is emitted at the end of the page by the layout.' ) . '</p>',
+                    content: '<p class="text-zinc-600">' . e( 'This markup was rendered by the Dialog component and is emitted at the end of the page by the layout.' ) . '</p>',
                     size: 'sm',
                     id: 'home-dialog'
                 )

@@ -60,7 +60,7 @@ class Dialog extends Component
             <?= $data_open; ?>
             data-position="<?= $position; ?>"
         >
-            <div class="fixed inset-0 bg-gray-500/75 transition-opacity"></div>
+            <div class="fixed inset-0 bg-zinc-900/50 transition-opacity"></div>
 
             <div class="fixed inset-0 z-10 <?= $is_panel ? '' : 'w-screen overflow-y-auto'; ?>">
                 <div class="<?= $this->containerClass(); ?>">
@@ -79,7 +79,7 @@ class Dialog extends Component
                             </div>
                             <div
                                 id="dialog-title-<?= $this->options->id; ?>"
-                                class="dialog-title text-amber-800 text-xl font-semibold leading-6"
+                                class="dialog-title text-primary-800 text-xl font-semibold leading-6"
                             >
                                 <?= $this->options->title; ?>
                             </div>

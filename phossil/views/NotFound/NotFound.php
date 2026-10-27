@@ -27,15 +27,15 @@ readonly class NotFound extends View
         return $this->capture(function() {
             ?>
             <section class="shell py-24 text-center">
-                <p class="text-sm font-semibold text-slate-500">404</p>
-                <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">Page not found</h1>
+                <p class="text-sm font-semibold text-primary-600">404</p>
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-zinc-900">Page not found</h1>
                 <p class="mt-6">
                     <?php
                     Anchor::create(
                         new AnchorOptions(
                             href: '/',
                             text: 'Back to the home page',
-                            class: 'font-medium text-slate-900 underline'
+                            class: 'link'
                         )
                     );
                     ?>

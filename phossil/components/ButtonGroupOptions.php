@@ -20,7 +20,7 @@ class ButtonGroupOptions extends ComponentOptions
         public array $items = [],
         public bool $stacked = false,
         public bool $compact = false,
-        public string $active_class = 'bg-slate-100 text-slate-900',
+        public string $active_class = 'bg-primary-50 text-primary-800',
         ...$args
     ) {
         parent::__construct(...$args);

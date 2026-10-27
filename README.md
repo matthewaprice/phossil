@@ -77,7 +77,7 @@ pnpm lint          # oxlint: phossil/js
 
 CSS and JS go through Vite. `Layout` links them with `vite('css/app.css', 'js/app.js')`: it points at the dev server while it runs, and otherwise at the hashed files such as `/assets/app-DQowg002.css`. A new build gives changed files new names, so browsers fetch them after a deploy. To add an entry, list it in `build.rolldownOptions.input` in `vite.config.js` and pass it to `vite()`.
 
-Images are served as they are. Templates link them with `asset('img/favicon.svg')`, which gives `/assets/img/favicon.svg?v=<modified time>`. nginx serves that URL in development, and the build copies the file to the same path, so links work the same in both.
+Images are served as they are. Templates link them with `asset('img/phossil-logo.svg')`, which gives `/assets/img/phossil-logo.svg?v=<modified time>`. nginx serves that URL in development, and the build copies the file to the same path, so links work the same in both.
 
 ### Adding a page
 
