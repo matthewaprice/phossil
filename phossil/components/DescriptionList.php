@@ -44,8 +44,8 @@ class DescriptionList extends Component
             foreach ($this->options->items as $item) {
                 if (!is_null($item)) {
                     ?>
-                    <dt class="text-sm/6 font-medium text-gray-900 mr-3" id="<?= $item->id ? $item->id. '-dt' : ''; ?>"><?= $item->dt; ?></dt>
-                    <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-0" id="<?= $item->id ? $item->id . '-dd' : ''; ?>"><?= $item->dd; ?></dd>
+                    <dt class="text-sm/6 font-medium text-zinc-900 mr-3" id="<?= $item->id ? $item->id. '-dt' : ''; ?>"><?= $item->dt; ?></dt>
+                    <dd class="mt-1 text-sm/6 text-zinc-700 sm:mt-0" id="<?= $item->id ? $item->id . '-dd' : ''; ?>"><?= $item->dd; ?></dd>
                     <?php
                 }
             }

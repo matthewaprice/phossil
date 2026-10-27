@@ -63,14 +63,18 @@ class Layout extends Component
             <meta name="description" content="<?= e( $this->options->description ); ?>">
 
             <?= vite( 'css/app.css', 'js/app.js' ); ?>
-            <link rel="icon" type="image/svg+xml" href="<?= asset( 'img/favicon.svg' ); ?>">
+            <link rel="icon" href="<?= asset( 'img/favicon.ico' ); ?>" sizes="any">
+            <link rel="icon" type="image/png" sizes="32x32" href="<?= asset( 'img/favicon-32x32.png' ); ?>">
+            <link rel="icon" type="image/png" sizes="16x16" href="<?= asset( 'img/favicon-16x16.png' ); ?>">
+            <link rel="apple-touch-icon" sizes="180x180" href="<?= asset( 'img/apple-touch-icon.png' ); ?>">
+            <link rel="manifest" href="<?= asset( 'img/site.webmanifest' ); ?>">
         </head>
 
         <body class="flex min-h-screen flex-col">
-            <header class="border-b border-slate-200 bg-white">
+            <header class="border-b border-zinc-900/10 bg-white">
                 <div class="shell flex flex-wrap items-center gap-4 py-4">
-                    <a href="/" class="flex items-center gap-2 font-semibold text-slate-900">
-                        <img src="<?= asset( 'img/favicon.svg' ); ?>" alt="" class="size-7">
+                    <a href="/" class="flex items-center gap-2 text-2xl font-semibold tracking-tight text-zinc-900">
+                        <img src="<?= asset( 'img/phossil-logo.svg' ); ?>" alt="" class="h-12 w-auto">
                         phossil
                     </a>
                     <nav class="ml-auto flex gap-1 text-sm font-medium">
@@ -81,13 +85,13 @@ class Layout extends Component
                                     href: $href,
                                     text: $text,
                                     current: $this->isCurrent( $href ),
-                                    class: 'rounded-md px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 aria-[current=page]:bg-slate-900 aria-[current=page]:text-white',
+                                    class: 'rounded-md px-3 py-2 text-zinc-600 transition hover:bg-zinc-100 hover:text-zinc-900 aria-[current=page]:bg-primary-50 aria-[current=page]:border aria-[current=page]:border-amber-300 aria-[current=page]:text-primary-800',
                                 )
                             );
                         }
                         ?>
                     </nav>
-                    <div class="flex items-center gap-1 border-l border-slate-200 pl-3 text-sm font-medium">
+                    <div class="flex items-center gap-1 border-l border-zinc-900/10 pl-3 text-sm font-medium">
                         <?php
                         Anchor::create(
                             new AnchorOptions(
@@ -95,7 +99,7 @@ class Layout extends Component
                                 text: Heroicon::render( Icon::book_open, HeroiconSize::Mini, HeroiconStyle::Solid, class: 'size-5' ) . '<span>Docs</span>',
                                 target: '_blank',
                                 title: 'Documentation',
-                                class: 'flex items-center gap-1.5 rounded-md px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+                                class: 'flex items-center gap-1.5 rounded-md px-3 py-2 text-zinc-600 transition hover:bg-zinc-100 hover:text-zinc-900',
                             )
                         );
                         Anchor::create(
@@ -104,7 +108,7 @@ class Layout extends Component
                                 text: $this->githubMark() . '<span class="sr-only">GitHub</span>',
                                 target: '_blank',
                                 title: 'View on GitHub',
-                                class: 'flex items-center rounded-md p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+                                class: 'flex items-center rounded-md p-2 text-zinc-600 transition hover:bg-zinc-100 hover:text-zinc-900',
                             )
                         );
                         ?>
@@ -116,8 +120,8 @@ class Layout extends Component
                 <?= $this->options->content; ?>
             </main>
 
-            <footer class="border-t border-slate-200 bg-white">
-                <div class="shell py-6 text-sm text-slate-500">
+            <footer class="border-t border-zinc-900/10 bg-white">
+                <div class="shell py-6 text-sm text-zinc-500">
                     &copy<?= date('Y'); ?> My Site
                 </div>
             </footer>

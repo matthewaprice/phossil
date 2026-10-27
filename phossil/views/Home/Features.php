@@ -30,7 +30,7 @@ readonly class Features extends View
                 foreach ( self::FEATURES as $title => [$icon, $description] ) {
                     Card::create(
                         new CardOptions(
-                            title: '<span class="flex items-center gap-2">' . Heroicon::render( $icon, HeroiconSize::Mini, HeroiconStyle::Solid, class: 'size-5 text-slate-500' ) . e( $title ) . '</span>',
+                            title: '<span class="flex items-center gap-2">' . Heroicon::render( $icon, HeroiconSize::Mini, HeroiconStyle::Solid, class: 'size-5 text-primary-500' ) . e( $title ) . '</span>',
                             content: e( $description )
                         )
                     );

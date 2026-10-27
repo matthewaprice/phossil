@@ -102,7 +102,7 @@ class ButtonGroup extends Component
 
         $item_class[] = $item->class;
         $item_class[] = Buttons::make($this->options->compact ? Buttons::Small : Buttons::Large);
-        $item_class[] = 'rounded-none border-slate-300';
+        $item_class[] = 'rounded-none border-zinc-300';
 
         if ($this->determineActive($item)) {
             $item_class[] = $this->options->active_class;

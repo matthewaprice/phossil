@@ -36,15 +36,15 @@ class Card extends Component
         }
 
         ?>
-        <div id="<?= $this->id; ?>" class="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white shadow-sm<?= !empty($this->options->class) ? ' ' . $this->options->class : ''; ?>"<?= self::dataAttributes($this->options->data); ?>>
+        <div id="<?= $this->id; ?>" class="divide-y divide-zinc-200 rounded-lg border border-zinc-200 bg-white shadow-sm<?= !empty($this->options->class) ? ' ' . $this->options->class : ''; ?>"<?= self::dataAttributes($this->options->data); ?>>
             <?php
             if (!empty($this->options->title)) {
                 ?>
-                <div class="px-5 py-3 font-semibold text-slate-900"><?= $this->options->title; ?></div>
+                <div class="px-5 py-3 font-semibold text-zinc-900"><?= $this->options->title; ?></div>
                 <?php
             }
             ?>
-            <div class="px-5 py-4 text-slate-600"><?= $this->options->content; ?></div>
+            <div class="px-5 py-4 text-zinc-600"><?= $this->options->content; ?></div>
             <?php
             if (!empty($this->options->footer)) {
                 ?>

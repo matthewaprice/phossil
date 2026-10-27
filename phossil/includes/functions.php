@@ -7,8 +7,8 @@
  * browser's cache for exactly the files that changed. CSS and JS go through
  * vite() instead.
  *
- * @param string $path Path inside the phossil folder, e.g. 'img/favicon.svg'.
- * @return string The URL, e.g. '/assets/img/favicon.svg?v=1761490000'.
+ * @param string $path Path inside the phossil folder, e.g. 'img/phossil-logo.svg'.
+ * @return string The URL, e.g. '/assets/img/phossil-logo.svg?v=1761490000'.
  */
 function asset(string $path): string
 {

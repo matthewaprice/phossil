@@ -48,10 +48,10 @@ class Badge extends Component
             'green' => [ 'bg-green-200', 'text-green-800' ],
             'blue' => [ 'bg-blue-200', 'text-blue-800' ],
             'red' => [ 'bg-red-200', 'text-red-800' ],
-            default => [ 'bg-gray-200', 'text-gray-800' ],
+            default => [ 'bg-zinc-200', 'text-zinc-800' ],
         };
         ?>
-        <span id="<?= $this->id; ?>" class="rounded-sm <?= $bg_color; ?> px-2 <?= $this->options->condensed ? 'py-1' : 'py-2'; ?> <?= $this->options->font_size; ?> font-bold <?= $text_color; ?> ring-1 ring-inset ring-gray-400<?= !empty($this->options->class) ? ' ' . $this->options->class : ''; ?>">
+        <span id="<?= $this->id; ?>" class="rounded-sm <?= $bg_color; ?> px-2 <?= $this->options->condensed ? 'py-1' : 'py-2'; ?> <?= $this->options->font_size; ?> font-bold <?= $text_color; ?> ring-1 ring-inset ring-zinc-400<?= !empty($this->options->class) ? ' ' . $this->options->class : ''; ?>">
             <?= $this->options->text; ?>
         </span>
         <?php
