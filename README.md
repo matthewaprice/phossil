@@ -7,15 +7,14 @@ While you develop, nginx sends every page request to `app/index.php` and PHP ren
 [Full Documentation - https://phossil.dev](https://phossil.dev)
 
 ## Why
+I love PHP, and I wanted the same <code>dist/</code> workflow JavaScript developers take for
+granted. phossil gives you one, and it covers two kinds of projects:
 
-I love PHP.  I like the bundling modern javascript frameworks provide and wanted to build
-a way to generate a <code>dist/</code> directory for PHP projects. This kit provides quick previews
-for my clients without having to have a PHP server running during development; some sites might be complicated that will need more infra later, but needs client feedback now, while some are simple that
-don't require a server/backend.
+- **Simple sites** that never needed a server. Build once and host the HTML anywhere.
+- **Bigger sites** that will need infrastructure later but need client feedback now. Ship a static preview today and keep the PHP for when you add the backend.
 
-While you work, nginx hands every request to PHP. When you're done, <code>composer build:zip</code>
-requests every route, saves the HTML, and zips it with the CSS, JS and images. The build is then an
-upload to a static host like AWS Amplify with no server to setup and manage.
+Either way, it's one command: <code>composer build:zip</code> renders every route and zips it
+with your assets for a host like AWS Amplify.
 
 - **Type safety while you build.** Components take typed options objects and views are plain PHP classes, so your IDE can flag issues as you work.
 - **The same setup everywhere.** PHP, nginx and Vite all run in Docker, so every project and every machine runs the same versions with the same config.
