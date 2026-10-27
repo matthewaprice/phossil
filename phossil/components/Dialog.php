@@ -79,7 +79,7 @@ class Dialog extends Component
                             </div>
                             <div
                                 id="dialog-title-<?= $this->options->id; ?>"
-                                class="dialog-title text-primary-800 text-xl font-semibold leading-6 text-gray-900"
+                                class="dialog-title text-amber-800 text-xl font-semibold leading-6"
                             >
                                 <?= $this->options->title; ?>
                             </div>

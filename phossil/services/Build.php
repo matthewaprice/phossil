@@ -62,12 +62,16 @@ class Build {
 
     }
 
+    /**
+     * Copies img/ into the build, except the heroicons. Heroicon writes each icon a
+     * page uses into its HTML, so no page links those files.
+     */
     public function images() {
 
         $source_img = $this->app_dir . '/img';
         $dest_img = $this->dist_dir . '/' . $this->assets() . '/img';
         if ( file_exists( $source_img ) ) {
-            $this->copyDirectory( $source_img, $dest_img );
+            $this->copyDirectory( $source_img, $dest_img, [ 'heroicons' ] );
         }
 
     }
@@ -161,8 +165,10 @@ class Build {
 
     /**
      * Copies a directory recursively, leaving out hidden files such as .DS_Store.
+     *
+     * @param list<string> $exclude Names directly inside $source to leave out, such as 'heroicons'.
      */
-    public function copyDirectory( string $source, string $destination ) {
+    public function copyDirectory( string $source, string $destination, array $exclude = [] ) {
         if ( !is_dir( $source ) ) {
             return false;
         }
@@ -173,7 +179,7 @@ class Build {
 
         $dir = opendir( $source );
         while ( false !== ( $file = readdir( $dir ) ) ) {
-            if ( $file[0] !== '.' ) {
+            if ( $file[0] !== '.' && !in_array( $file, $exclude, true ) ) {
                 $src_path = $source . '/' . $file;
                 $dest_path = $destination . '/' . $file;
 

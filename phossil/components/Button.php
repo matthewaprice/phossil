@@ -79,6 +79,6 @@ class Button extends Component
     private function buttonClass(): string
     {
 
-        return trim(Buttons::make(...$this->options->styles) . ' cursor-' . $this->options->cursor . ' ' . $this->options->class);
+        return trim(Buttons::make(...$this->options->styles) . ' ' . $this->options->cursor . ' ' . $this->options->class);
     }
 }

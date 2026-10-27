@@ -11,14 +11,14 @@ class BadgeOptions extends ComponentOptions
 {
     /**
      * @param string $text      Label text; trusted HTML, so callers escape it.
-     * @param string $color     Color scheme: `primary`, `blue`, `green`, `red` or `gray`; anything else renders gray.
-     * @param string $font_size Tailwind text size without its `text-` prefix, as in `xs`.
+     * @param string $color     Color scheme: `amber`, `blue`, `green`, `red` or `gray`; anything else renders gray.
+     * @param string $font_size Tailwind text size class, such as `text-xs`. Write it out in full, so Tailwind finds it.
      * @param mixed  ...$args   Forwarded to ComponentOptions.
      */
     public function __construct(
         public string $text = '',
         public string $color = 'blue',
-        public string $font_size = 'xs',
+        public string $font_size = 'text-xs',
         public bool $condensed = false,
         ...$args
     ) {
