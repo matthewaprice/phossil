@@ -8,11 +8,14 @@ While you develop, nginx sends every page request to `app/index.php` and PHP ren
 
 ## Why
 
-I build a lot of sites, and I would rather write them in PHP, with typed components and views, than in a JS framework.
+I love PHP.  I like the bundling modern javascript frameworks provide and wanted to build
+a way to generate a <code>dist/</code> directory for PHP projects. This kit provides quick previews
+for my clients without having to have a PHP server running during development; some sites might be complicated that will need more infra later, but needs client feedback now, while some are simple that
+don't require a server/backend.
 
-The part I want to be fast is letting the customer see it. Plenty of us, myself included, have a server where a build can go into a client's directory for a preview, and that works. But a marketing site is usually a handful of pages with nothing happening on the server. If the output is just files, a static hosting service like AWS Amplify turns a preview into an upload, with no PHP to run behind it.
-
-phossil keeps the PHP for development and drops it for deployment:
+While you work, nginx hands every request to PHP. When you're done, <code>composer build:zip</code>
+requests every route, saves the HTML, and zips it with the CSS, JS and images. The build is then an
+upload to a static host like AWS Amplify with no server to setup and manage.
 
 - **Type safety while you build.** Components take typed options objects and views are plain PHP classes, so your IDE can flag issues as you work.
 - **The same setup everywhere.** PHP, nginx and Vite all run in Docker, so every project and every machine runs the same versions with the same config.
@@ -84,4 +87,4 @@ Images are served as they are. Templates link them with `asset('img/favicon.svg'
 
 It is served at `/my-new-page/` straight away, and the next `composer build` writes `dist/my-new-page/index.html`.
 
-To keep a page out of the build while you work on it, add `skip_build: true` to its `RouteType`. It is still served in development, but the build leaves it out, so a preview shows only the pages that are ready. Remove anything that links to it, such as its `Layout::NAV` entry, before you build, or the static site will have a broken link.
+To keep a page out of the build while you work on it, add `skip_build: true` to its `RouteType`. It is still served in development, but the build leaves it out, so a build shows only includes the pages that are ready for prime time. Remove anything that links to it, such as its `Layout::NAV` entry, before you build, or the static site will have a broken link.
