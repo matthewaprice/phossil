@@ -23,7 +23,7 @@
         "build": "pnpm build && docker compose exec php php phossil/includes/build.php && pnpm format:build",
         "build:zip": [
             "@build",
-            "rm -f build.zip && cd dist && zip -rq ../dist.zip . -x '.*' '*/.*'"
+            "rm -f dist.zip && cd dist && zip -rq ../dist.zip . -x '.*' '*/.*'"
         ]
     }
 }
