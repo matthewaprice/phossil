@@ -118,7 +118,7 @@ class Layout extends Component
 
             <main class="flex-1">
                 <?php if (!empty($this->options->title)) { ?>
-                    <h1 class="shell mt-6 text-3xl font-bold tracking-tight text-zinc-900"><?= $this->options->title; ?></h1>
+                    <h1 class="shell mt-6 text-3xl font-bold tracking-tight text-zinc-900"><?= e($this->options->title); ?></h1>
                 <?php } ?>
                 <?= $this->options->content; ?>
             </main>

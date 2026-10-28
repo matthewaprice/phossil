@@ -54,7 +54,7 @@ class Dialog extends Component
         <dialog
             id="<?= $this->id; ?>"
             class="relative z-40"
-            aria-labelledby="dialog-title-<?= $this->options->id; ?>"
+            aria-labelledby="dialog-title-<?= $this->id; ?>"
             aria-modal="true"
             <?= $data_field_focus; ?>
             <?= $data_open; ?>
@@ -71,21 +71,30 @@ class Dialog extends Component
                                 Button::create(
                                     new ButtonOptions(
                                         text: 'Close',
-                                        id: 'dialog_close-' . $this->options->id,
+                                        id: 'dialog_close-' . $this->id,
                                         styles: [Buttons::Small, Buttons::Bordered],
                                     )
                                 );
                                 ?>
                             </div>
                             <div
-                                id="dialog-title-<?= $this->options->id; ?>"
+                                id="dialog-title-<?= $this->id; ?>"
                                 class="dialog-title text-primary-800 text-xl font-semibold leading-6"
                             >
                                 <?= $this->options->title; ?>
                             </div>
-                            <div class="dialog-content pt-4 mt-2">
+                            <div class="dialog-content pt-4 mt-2 text-zinc-600">
                                 <?= $this->options->content; ?>
                             </div>
+                            <?php
+                            if (!empty($this->options->footer)) {
+                                ?>
+                                <div class="dialog-footer mt-6 border-t border-zinc-200 pt-4 text-sm">
+                                    <?= $this->options->footer; ?>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

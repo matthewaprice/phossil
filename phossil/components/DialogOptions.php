@@ -12,7 +12,7 @@ class DialogOptions extends ComponentOptions
     /**
      * @param string               $title    Title text; trusted HTML, so callers escape it.
      * @param string               $content  Main content; trusted HTML, so callers escape it.
-     * @param string               $footer   Footer content; trusted HTML, so callers escape it.
+     * @param string               $footer   Footer content, shown below the content; trusted HTML, so callers escape it.
      * @param array{field?: string} $focus   Id of the field to focus when the dialog opens.
      * @param string               $size     Size variant: `sm`, `md` or `lg`.
      * @param bool                 $open     Open automatically on page load.

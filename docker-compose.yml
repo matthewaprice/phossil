@@ -9,6 +9,9 @@ services:
       - ./phossil:/srv/phossil
       - ./vendor:/srv/vendor
       - ./dist:/srv/dist
+      # For `composer test`, which runs PHPUnit in this container.
+      - ./tests:/srv/tests
+      - ./phpunit.xml:/srv/phpunit.xml:ro
   nginx:
     image: nginx:1.29
     ports:

@@ -20,11 +20,20 @@
             "Phossil\\Views\\": "phossil/views/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Phossil\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^13.4"
+    },
     "scripts": {
         "build": "pnpm build && docker compose exec php php phossil/includes/build.php && pnpm format:build",
         "build:zip": [
             "@build",
             "rm -f dist.zip && cd dist && zip -rq ../dist.zip . -x '.*' '*/.*'"
-        ]
+        ],
+        "test": "docker compose exec php vendor/bin/phpunit"
     }
 }
