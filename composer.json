@@ -1,6 +1,7 @@
 {
     "name": "matthewprice/phossil",
     "description": "A small PHP site with routing and components that builds to static HTML.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Matthew Price",

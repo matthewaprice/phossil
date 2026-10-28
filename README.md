@@ -58,3 +58,7 @@ pnpm lint          # oxlint: phossil/js
 - [Directory structure](https://phossil.dev/directory-structure/): what each file and folder does.
 - [Deploy to AWS Amplify](https://phossil.dev/deploy-to-amplify/): deploy by hand or from GitHub Actions on every push.
 - [Features](https://phossil.dev/features/): routing, typed views and components, Vite and Tailwind, Docker, and the build.
+
+## License
+
+[MIT](LICENSE)
