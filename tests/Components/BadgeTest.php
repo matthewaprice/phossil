@@ -6,9 +6,11 @@ use Phossil\Components\{
     Badge,
     BadgeOptions
 };
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    DataProvider,
+    Test
+};
 
 #[CoversClass(Badge::class)]
 #[CoversClass(BadgeOptions::class)]

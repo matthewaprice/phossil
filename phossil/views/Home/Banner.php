@@ -2,13 +2,15 @@
 
 namespace Phossil\Views\Home;
 
-use Phossil\Components\Anchor;
-use Phossil\Components\AnchorOptions;
-use Phossil\Components\Button;
-use Phossil\Components\ButtonOptions;
-use Phossil\Components\Dialog;
-use Phossil\Components\DialogOptions;
-use Phossil\Components\View;
+use Phossil\Components\{
+    Anchor,
+    AnchorOptions,
+    Button,
+    ButtonOptions,
+    Dialog,
+    DialogOptions,
+    View
+};
 use Phossil\Enums\Buttons;
 
 readonly class Banner extends View

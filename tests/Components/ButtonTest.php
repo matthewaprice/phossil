@@ -8,8 +8,10 @@ use Phossil\Components\{
     ButtonOptions
 };
 use Phossil\Enums\Buttons;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 #[CoversClass(Button::class)]
 #[CoversClass(ButtonOptions::class)]

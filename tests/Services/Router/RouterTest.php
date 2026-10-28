@@ -8,9 +8,11 @@ use Phossil\Tests\Services\Router\Fixtures\{
     HomeStub
 };
 use Phossil\Tests\Support\FakesViteDevServer;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\RunInSeparateProcess;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    RunInSeparateProcess,
+    Test
+};
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Router::class)]

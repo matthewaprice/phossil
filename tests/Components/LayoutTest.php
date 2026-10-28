@@ -9,8 +9,10 @@ use Phossil\Components\{
     LayoutOptions
 };
 use Phossil\Tests\Support\FakesViteDevServer;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 #[CoversClass(Layout::class)]
 #[CoversClass(LayoutOptions::class)]

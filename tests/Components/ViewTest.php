@@ -3,8 +3,10 @@
 namespace Phossil\Tests\Components;
 
 use Phossil\Components\View;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 #[CoversClass(View::class)]
 class ViewTest extends ComponentTestCase

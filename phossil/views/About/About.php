@@ -2,12 +2,14 @@
 
 namespace Phossil\Views\About;
 
-use Phossil\Components\DescriptionList;
-use Phossil\Components\DescriptionListItem;
-use Phossil\Components\DescriptionListOptions;
-use Phossil\Components\Layout;
-use Phossil\Components\LayoutOptions;
-use Phossil\Components\View;
+use Phossil\Components\{
+    DescriptionList,
+    DescriptionListItem,
+    DescriptionListOptions,
+    Layout,
+    LayoutOptions,
+    View
+};
 
 readonly class About extends View
 {

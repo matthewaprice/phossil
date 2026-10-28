@@ -4,8 +4,10 @@ namespace Phossil\Tests\Views\Home;
 
 use Phossil\Tests\Views\ViewTestCase;
 use Phossil\Views\Home\Home;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 /**
  * Homepage test
