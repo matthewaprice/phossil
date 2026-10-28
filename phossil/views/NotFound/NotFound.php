@@ -16,7 +16,7 @@ readonly class NotFound extends View
             Layout::create(
                 new LayoutOptions(
                     content: $this->content(),
-                    title: 'Page not found'
+                    title: 'Page not found - 404'
                 )
             );
         });
@@ -26,9 +26,7 @@ readonly class NotFound extends View
     {
         return $this->capture(function() {
             ?>
-            <section class="shell py-24 text-center">
-                <p class="text-sm font-semibold text-primary-600">404</p>
-                <h1 class="mt-2 text-3xl font-bold tracking-tight text-zinc-900">Page not found</h1>
+            <section class="shell py-4">
                 <p class="mt-6">
                     <?php
                     Anchor::create(

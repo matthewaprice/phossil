@@ -82,9 +82,8 @@ readonly class About extends View
     {
         return $this->capture(function() {
             ?>
-            <article class="shell py-16">
+            <article class="shell py-4">
                 <div class="max-w-3xl text-zinc-600">
-                    <h1 class="text-3xl font-bold tracking-tight text-zinc-900">About phossil</h1>
                     <p class="mt-6 text-lg">
                         Write it in PHP. Ship it as HTML. phossil is a small PHP site kit designed to deploy static
                         HTML files and assets. You get routes, typed views and components while you build, and a folder
