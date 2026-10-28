@@ -8,6 +8,7 @@ use Phossil\Components\{
     Layout,
     LayoutOptions
 };
+use Phossil\Tests\Support\FakesViteDevServer;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -15,38 +16,17 @@ use PHPUnit\Framework\Attributes\Test;
 #[CoversClass(LayoutOptions::class)]
 class LayoutTest extends ComponentTestCase
 {
-    /** The real phossil directory, restored after each test. */
-    private string $root;
-
-    /** A stand-in phossil directory, so vite() sees a dev server whether or not one runs. */
-    private string $fake_root;
+    use FakesViteDevServer;
 
     protected function setUp(): void
     {
-        global $app;
-
         parent::setUp();
-
-        $this->root = $app->root;
-        $this->fake_root = sys_get_temp_dir() . '/phossil-layout-test-' . bin2hex(random_bytes(4));
-
-        mkdir($this->fake_root);
-        symlink($this->root . '/img', $this->fake_root . '/img');
-        file_put_contents($this->fake_root . '/hot', 'http://localhost:5173');
-
-        $app->root = $this->fake_root;
+        $this->startFakeViteDevServer();
     }
 
     protected function tearDown(): void
     {
-        global $app;
-
-        $app->root = $this->root;
-
-        unlink($this->fake_root . '/hot');
-        unlink($this->fake_root . '/img');
-        rmdir($this->fake_root);
-
+        $this->stopFakeViteDevServer();
         parent::tearDown();
     }
 

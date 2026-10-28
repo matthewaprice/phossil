@@ -12,10 +12,14 @@
         <testsuite name="Components">
             <directory>tests/Components</directory>
         </testsuite>
+        <testsuite name="Views">
+            <directory>tests/Views</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>
             <directory>phossil/components</directory>
+            <directory>phossil/views</directory>
         </include>
     </source>
 </phpunit>
