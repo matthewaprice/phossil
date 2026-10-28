@@ -51,7 +51,8 @@ readonly class Banner extends View
             Dialog::create(
                 new DialogOptions(
                     title: 'Hello from a dialog',
-                    content: '<p class="text-zinc-600">' . e( 'This markup was rendered by the Dialog component and is emitted at the end of the page by the layout.' ) . '</p>',
+                    content: 'This markup was rendered by the Dialog component and is emitted at the end of the page by the layout.',
+                    footer: 'Here is some dialog footer text',
                     size: 'sm',
                     id: 'home-dialog'
                 )

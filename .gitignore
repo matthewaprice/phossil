@@ -8,3 +8,6 @@ phossil/hot
 
 /dist/
 dist.zip
+
+# PHPUnit
+.phpunit.cache/

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Run with `composer test`, which runs PHPUnit in the php container. -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         beStrictAboutOutputDuringTests="true">
+    <testsuites>
+        <testsuite name="Components">
+            <directory>tests/Components</directory>
+        </testsuite>
+        <testsuite name="Views">
+            <directory>tests/Views</directory>
+        </testsuite>
+        <testsuite name="Services">
+            <directory>tests/Services</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>phossil/components</directory>
+            <directory>phossil/views</directory>
+            <directory>phossil/services</directory>
+        </include>
+    </source>
+</phpunit>
