@@ -8,7 +8,7 @@ You get routes, typed views and components while you build, and a folder of stat
 
 ## Why
 
-I love PHP, and I wanted the same `dist/` workflow JavaScript developers take for granted. phossil gives you one, and it covers two kinds of projects:
+I love PHP, and I wanted the same `dist/` workflow JavaScript developers take for granted. phossil gives you one.  Here are a couple of project types that I use this kit for:
 
 - **Simple sites** that never needed a server. Build once and host the HTML anywhere.
 - **Bigger sites** that will need infrastructure later but need client feedback now. Ship a static preview today and keep the PHP for when you add the backend.
