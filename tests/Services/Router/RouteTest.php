@@ -10,8 +10,10 @@ use Phossil\Tests\Services\Router\Fixtures\{
     AboutStub,
     HomeStub
 };
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Route::class)]

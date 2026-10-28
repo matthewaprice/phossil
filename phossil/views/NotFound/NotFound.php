@@ -2,11 +2,13 @@
 
 namespace Phossil\Views\NotFound;
 
-use Phossil\Components\Anchor;
-use Phossil\Components\AnchorOptions;
-use Phossil\Components\Layout;
-use Phossil\Components\LayoutOptions;
-use Phossil\Components\View;
+use Phossil\Components\{
+    Anchor,
+    AnchorOptions,
+    Layout,
+    LayoutOptions,
+    View
+};
 
 readonly class NotFound extends View
 {

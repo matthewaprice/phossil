@@ -6,8 +6,10 @@ use Phossil\Components\{
     Card,
     CardOptions
 };
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 #[CoversClass(Card::class)]
 #[CoversClass(CardOptions::class)]

@@ -7,9 +7,11 @@ use Phossil\Components\{
     DialogOptions
 };
 use Phossil\Enums\Buttons;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    DataProvider,
+    Test
+};
 
 #[CoversClass(Dialog::class)]
 #[CoversClass(DialogOptions::class)]

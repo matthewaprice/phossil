@@ -9,8 +9,10 @@ use Phossil\Components\{
     Component,
     ComponentOptions
 };
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 #[CoversClass(Component::class)]
 #[CoversClass(ComponentOptions::class)]

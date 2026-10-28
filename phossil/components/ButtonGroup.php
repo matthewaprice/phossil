@@ -3,8 +3,10 @@
 namespace Phossil\Components;
 
 use Phossil\Enums\Buttons;
-use Phossil\Support\Heroicon;
-use Phossil\Support\Request;
+use Phossil\Support\{
+    Heroicon,
+    Request
+};
 
 /**
  * Renders a group of navigation buttons with connected borders.

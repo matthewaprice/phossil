@@ -4,8 +4,10 @@ namespace Phossil\Tests\Views\NotFound;
 
 use Phossil\Tests\Views\ViewTestCase;
 use Phossil\Views\NotFound\NotFound;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 /**
  * 404 test

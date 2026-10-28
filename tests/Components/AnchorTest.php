@@ -6,8 +6,10 @@ use Phossil\Components\{
     Anchor,
     AnchorOptions
 };
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 #[CoversClass(Anchor::class)]
 #[CoversClass(AnchorOptions::class)]

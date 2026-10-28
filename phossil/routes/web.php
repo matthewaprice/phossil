@@ -1,7 +1,9 @@
 <?php
 
-use Phossil\Services\Router\Route;
-use Phossil\Services\Router\RouteType;
+use Phossil\Services\Router\{
+    Route,
+    RouteType
+};
 use Phossil\Views\About\About;
 use Phossil\Views\Home\Home;
 

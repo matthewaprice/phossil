@@ -2,9 +2,11 @@
 
 namespace Phossil\Views\Home;
 
-use Phossil\Components\Card;
-use Phossil\Components\CardOptions;
-use Phossil\Components\View;
+use Phossil\Components\{
+    Card,
+    CardOptions,
+    View
+};
 use Phossil\Enums\{
     HeroiconSize,
     HeroiconStyle,

@@ -11,8 +11,10 @@ use Phossil\Enums\{
     Buttons,
     Icon
 };
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\{
+    CoversClass,
+    Test
+};
 
 #[CoversClass(ButtonGroup::class)]
 #[CoversClass(ButtonGroupItem::class)]

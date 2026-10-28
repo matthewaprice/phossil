@@ -2,9 +2,11 @@
 
 namespace Phossil\Views\Home;
 
-use Phossil\Components\Layout;
-use Phossil\Components\LayoutOptions;
-use Phossil\Components\View;
+use Phossil\Components\{
+    Layout,
+    LayoutOptions,
+    View
+};
 
 readonly class Home extends View
 {
