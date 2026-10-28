@@ -8,10 +8,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 
 /**
- * An example view test.
+ * Homepage test
  *
- * A view is a plain object, so a test builds it with `new` and passes it
- * straight to an assertion.
+ * Ensures that the view renders content as expected.
  *
  * @author Matthew A Price
  */

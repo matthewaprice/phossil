@@ -16,14 +16,15 @@ description: Write the current branch's PR description in the house format (Titl
 
 ## Checks
 
-Phossil has no automated test suite, so these checks are what the Tests section reports. Run them all and keep each one's result:
+These checks are what the Tests section reports. Run them all and keep each one's result:
 
 1. `pnpm lint` — oxlint over the JS.
 2. `pnpm format:check` — oxfmt over JS, CSS, JSON and Markdown.
 3. `docker compose exec -T php php -l <file>` for each PHP file the branch adds or changes.
-4. `composer build` — renders every route and the 404 page through nginx, and fails on any unexpected status. It writes only to `dist/` and `phossil/dist/`, which are gitignored, so the tree stays clean.
+4. `composer test` — the PHPUnit suite in `tests/`, run in the php container. Keep the test and assertion counts it ends with. If it reports no tests or can't find `phpunit.xml`, the container predates the `tests/` mount: ask the user to run `docker compose up -d` and try again.
+5. `composer build` — renders every route and the 404 page through nginx, and fails on any unexpected status. It writes only to `dist/` and `phossil/dist/`, which are gitignored, so the tree stays clean.
 
-Checks 3 and 4 need the containers. If `docker compose ps` shows they aren't running, ask the user to start them with `docker compose up -d` rather than starting them yourself. If any check fails, stop and show the user its output. Don't describe a branch that doesn't build.
+Checks 3 to 5 need the containers. If `docker compose ps` shows they aren't running, ask the user to start them with `docker compose up -d` rather than starting them yourself. If any check fails, stop and show the user its output. Don't describe a branch that doesn't build.
 
 ## Output format
 
@@ -33,15 +34,15 @@ Structure, in order:
 
 1. **Title** — first line, plain text prefixed `Title: ` — no markdown, it becomes the PR title.
 2. **`# Description`** — two to three sentences giving a high-level understanding of the PR.
-3. **`# Type of Change`** — select all that apply: Bug Fix, New Feature, Feature Update, Breaking Change, Code Standards, Documentation, Internal/Cleanup, Infrastructure. Breaking Change means anything a site built on Phossil would have to update for: a renamed namespace, class, component option or path. Infrastructure means Docker, nginx, Vite or the build.
+3. **`# Type of Change`** — select all that apply: Bug Fix, New Feature, Feature Update, Breaking Change, Code Standards, Documentation, Internal/Cleanup, Infrastructure. Breaking Change means anything a site built on Phossil would have to update for: a renamed namespace, class, component option or path. Infrastructure means Docker, nginx, Vite, the build or the test setup (`phpunit.xml`, `tests/bootstrap.php`, the shared test cases).
 4. **`# Impact of Changes`** — why we did this and how it makes the application better.
 5. **`# Changes`** — what changed; use `##` subheadings to group related changes, such as Components, Views, Routing, Build, Docker or Docs.
 6. **`# UI/UX`** — whether the PR changes the rendered pages and how, including any change to the built HTML in `dist/`.
-7. **`# Tests`** — each check from the Checks section and its result. Say plainly that the project has no automated tests.
+7. **`# Tests`** — each check from the Checks section and its result, with the test and assertion counts from `composer test`. Name the tests the branch adds or changes. If the branch changes a component, view or service and no test covers the change, say so plainly rather than leaving it out.
 
 All section headers use a single `#`; only subsections under Changes use `##`.
 
-Then append this block verbatim, replacing only the placeholder paragraph under "Steps To Test" with concrete, numbered reproduction steps for this PR. They usually start with `docker compose up --build`, name the pages to open at http://localhost:8000, and end with `composer build` and what to look for in `dist/`.
+Then append this block verbatim, replacing only the placeholder paragraph under "Steps To Test" with concrete, numbered reproduction steps for this PR. They usually start with `docker compose up --build`, run `composer test`, name the pages to open at http://localhost:8000, and end with `composer build` and what to look for in `dist/`.
 
 ```
 ### Steps To Test For Other Developers/QA

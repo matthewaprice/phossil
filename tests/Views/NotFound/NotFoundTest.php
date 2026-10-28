@@ -8,8 +8,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 
 /**
- * Tests the page the router renders when no route matches, and that the build
- * writes to 404.html.
+ * 404 test
+ *
+ * Ensures that the view renders content as expected.
  *
  * @author Matthew A Price
  */
