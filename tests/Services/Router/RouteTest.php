@@ -54,16 +54,6 @@ class RouteTest extends TestCase
     }
 
     #[Test]
-    public function it_compiles_each_path_into_the_pattern_the_router_matches(): void
-    {
-        global $routes;
-
-        Route::create(new RouteType(path: 'articles/{slug?}', where: ['slug' => '[a-z0-9-]+']));
-
-        $this->assertSame('#^articles(?:/(?P<slug>[a-z0-9-]+))?$#', $routes[0]->pattern);
-    }
-
-    #[Test]
     public function it_adds_to_the_routes_already_registered(): void
     {
         global $routes;
@@ -79,58 +69,9 @@ class RouteTest extends TestCase
     {
         $route_type = new RouteType();
 
+        $this->assertNull($route_type->controller);
         $this->assertSame('', $route_type->path);
         $this->assertSame('', $route_type->view);
         $this->assertFalse($route_type->skip_build);
-    }
-
-    #[Test]
-    public function a_placeholder_matches_one_whole_segment_unless_where_narrows_it(): void
-    {
-        $pattern = Route::compilePath('articles/{slug}');
-        $narrowed = Route::compilePath('articles/{id}', ['id' => '\\d+']);
-
-        $this->assertMatchesRegularExpression($pattern, 'articles/article-1');
-        $this->assertDoesNotMatchRegularExpression($pattern, 'articles');
-        $this->assertDoesNotMatchRegularExpression($pattern, 'articles/article-1/extra');
-        $this->assertMatchesRegularExpression($narrowed, 'articles/12');
-        $this->assertDoesNotMatchRegularExpression($narrowed, 'articles/article-1');
-    }
-
-    #[Test]
-    public function an_optional_placeholder_can_be_left_off(): void
-    {
-        $pattern = Route::compilePath('articles/{slug?}');
-
-        $this->assertMatchesRegularExpression($pattern, 'articles');
-        $this->assertMatchesRegularExpression($pattern, 'articles/article-1');
-        $this->assertDoesNotMatchRegularExpression($pattern, 'articlesx');
-    }
-
-    #[Test]
-    public function the_home_page_matches_only_the_empty_path(): void
-    {
-        $pattern = Route::compilePath('');
-
-        $this->assertMatchesRegularExpression($pattern, '');
-        $this->assertDoesNotMatchRegularExpression($pattern, 'about');
-    }
-
-    #[Test]
-    public function a_route_url_drops_its_placeholders(): void
-    {
-        $this->assertSame('articles', new RouteType(path: 'articles/{slug?}')->url());
-        $this->assertSame('about', new RouteType(path: 'about')->url());
-        $this->assertSame('', new RouteType()->url());
-    }
-
-    #[Test]
-    public function a_segment_the_url_left_out_reads_as_the_default(): void
-    {
-        $route_type = new RouteType(path: 'articles/{slug?}');
-        $route_type->segments = ['slug' => 'article-1'];
-
-        $this->assertSame('article-1', $route_type->segment('slug'));
-        $this->assertSame('none', $route_type->segment('id', 'none'));
     }
 }

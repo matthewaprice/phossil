@@ -50,9 +50,6 @@ class Build {
     /**
      * Turns the route definitions into the URLs to build, leaving out any marked `skip_build`.
      *
-     * A route's placeholders are dropped, so 'articles/{slug?}' builds '/articles'. A
-     * route whose placeholders are required can't answer that URL, so it is left out.
-     *
      * @return list<string> URL paths such as '/' and '/about'.
      */
     public function urls(): array {
@@ -60,8 +57,8 @@ class Build {
         global $routes;
 
         return array_values( array_unique( array_map(
-            fn( RouteType $route ) => '/' . $route->url(),
-            array_filter( $routes, fn( RouteType $route ) => !$route->skip_build && preg_match( $route->pattern, $route->url() ) )
+            fn( RouteType $route ) => '/' . $route->path,
+            array_filter( $routes, fn( RouteType $route ) => !$route->skip_build )
         ) ) );
 
     }

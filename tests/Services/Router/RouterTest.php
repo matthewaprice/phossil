@@ -164,7 +164,7 @@ class RouterTest extends TestCase
     }
 
     /**
-     * Registers routes through Route::create(), so their patterns are compiled,
+     * Registers routes through Route::create(), the way routes/web.php does,
      * without touching the routes routes/web.php registered.
      *
      * @return list<RouteType> The routes as Route::create() registered them.
