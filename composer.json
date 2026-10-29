@@ -13,7 +13,9 @@
     },
     "autoload": {
         "psr-4": {
+            "Phossil\\Controllers\\": "phossil/controllers/",
             "Phossil\\Components\\": "phossil/components/",
+            "Phossil\\Data\\": "phossil/data/",
             "Phossil\\Enums\\": "phossil/enums/",
             "Phossil\\Services\\": "phossil/services/",
             "Phossil\\Support\\": "phossil/support/",

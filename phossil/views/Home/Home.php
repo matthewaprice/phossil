@@ -10,6 +10,10 @@ use Phossil\Components\{
 
 readonly class Home extends View
 {
+    public function __construct(public array $features)
+    {
+    }
+
     public function render(): string
     {
         return $this->capture(function() {
@@ -26,7 +30,7 @@ readonly class Home extends View
     {
         return $this->capture(function() {
             echo new Banner();
-            echo new Features();
+            echo new Features($this->features);
         });
     }
 }

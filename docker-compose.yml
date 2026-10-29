@@ -6,12 +6,7 @@ services:
     image: php:8.5-fpm
     working_dir: /srv
     volumes:
-      - ./phossil:/srv/phossil
-      - ./vendor:/srv/vendor
-      - ./dist:/srv/dist
-      # For `composer test`, which runs PHPUnit in this container.
-      - ./tests:/srv/tests
-      - ./phpunit.xml:/srv/phpunit.xml:ro
+      - .:/srv
   nginx:
     image: nginx:1.29
     ports:

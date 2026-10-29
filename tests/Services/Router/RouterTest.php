@@ -2,10 +2,16 @@
 
 namespace Phossil\Tests\Services\Router;
 
-use Phossil\Services\Router\Router;
+use Phossil\Services\Router\{
+    Route,
+    RouteController,
+    Router,
+    RouteType
+};
 use Phossil\Tests\Services\Router\Fixtures\{
     AboutStub,
-    HomeStub
+    HomeStub,
+    PathStubController
 };
 use Phossil\Tests\Support\FakesViteDevServer;
 use PHPUnit\Framework\Attributes\{
@@ -19,12 +25,6 @@ use PHPUnit\Framework\TestCase;
 class RouterTest extends TestCase
 {
     use FakesViteDevServer;
-
-    /** Routes in the shape Route::create() registers them. */
-    private const ROUTES = [
-        ['path' => '', 'view' => HomeStub::class, 'skip_build' => false],
-        ['path' => 'about', 'view' => AboutStub::class, 'skip_build' => false],
-    ];
 
     protected function setUp(): void
     {
@@ -62,9 +62,22 @@ class RouterTest extends TestCase
     #[Test]
     public function it_serves_a_route_left_out_of_the_build(): void
     {
-        $routes = [['path' => 'draft', 'view' => AboutStub::class, 'skip_build' => true]];
+        $routes = $this->register(new RouteType(path: 'draft', view: AboutStub::class, skip_build: true));
 
         $this->assertSame('<p>about</p>', $this->process('/draft/', $routes));
+    }
+
+    #[Test]
+    public function it_hands_the_controller_the_route_it_matched(): void
+    {
+        $this->assertSame('<p>articles/article-1</p>', $this->process('/articles/article-1/', $this->articleRoutes()));
+    }
+
+    #[Test]
+    public function it_keeps_the_list_route_apart_from_the_item_routes(): void
+    {
+        $this->assertSame('<p>articles</p>', $this->process('/articles/', $this->articleRoutes()));
+        $this->assertSame('<p>articles/article-2</p>', $this->process('/articles/article-2/', $this->articleRoutes()));
     }
 
     // http_response_code() can't set a code once PHPUnit has printed anything,
@@ -84,9 +97,29 @@ class RouterTest extends TestCase
     #[RunInSeparateProcess]
     public function it_renders_the_not_found_page_when_the_view_class_does_not_exist(): void
     {
-        $routes = [['path' => 'broken', 'view' => 'Phossil\Views\Missing', 'skip_build' => false]];
+        $routes = $this->register(new RouteType(path: 'broken', view: 'Phossil\Views\Missing'));
 
         $html = $this->process('/broken/', $routes);
+
+        $this->assertSame(404, http_response_code());
+        $this->assertStringContainsString('Page not found - 404', $html);
+    }
+
+    #[Test]
+    #[RunInSeparateProcess]
+    public function it_renders_the_not_found_page_for_an_item_no_route_was_registered_for(): void
+    {
+        $html = $this->process('/articles/article-3/', $this->articleRoutes());
+
+        $this->assertSame(404, http_response_code());
+        $this->assertStringContainsString('Page not found - 404', $html);
+    }
+
+    #[Test]
+    #[RunInSeparateProcess]
+    public function it_renders_the_not_found_page_when_the_controller_returns_null(): void
+    {
+        $html = $this->process('/articles/missing/', $this->articleRoutes());
 
         $this->assertSame(404, http_response_code());
         $this->assertStringContainsString('Page not found - 404', $html);
@@ -95,14 +128,58 @@ class RouterTest extends TestCase
     /**
      * Runs the router for a request and returns what it echoed.
      *
-     * @param array<int, array{path: string, view: string, skip_build: bool}> $routes
+     * @param list<RouteType>|null $routes Defaults to a home and an about route.
      */
-    private function process(string $uri, array $routes = self::ROUTES): string
+    private function process(string $uri, ?array $routes = null): string
     {
         $_SERVER['REQUEST_URI'] = $uri;
+
+        $routes ??= $this->register(
+            new RouteType(path: '', view: HomeStub::class),
+            new RouteType(path: 'about', view: AboutStub::class),
+        );
 
         ob_start();
         new Router($routes)->process();
         return (string) ob_get_clean();
+    }
+
+    /**
+     * An articles list route plus one route per article, registered the way
+     * routes/web.php loops over the known articles, all served by the stub controller.
+     *
+     * @return list<RouteType>
+     */
+    private function articleRoutes(): array
+    {
+        $controller = new RouteController(controller: PathStubController::class, method: 'view');
+
+        return $this->register(
+            new RouteType(path: 'articles', controller: $controller),
+            ...array_map(
+                fn (string $slug): RouteType => new RouteType(path: 'articles/' . $slug, controller: $controller),
+                ['article-1', 'article-2', 'missing']
+            )
+        );
+    }
+
+    /**
+     * Registers routes through Route::create(), so their patterns are compiled,
+     * without touching the routes routes/web.php registered.
+     *
+     * @return list<RouteType> The routes as Route::create() registered them.
+     */
+    private function register(RouteType ...$route_types): array
+    {
+        global $routes;
+
+        $site_routes = $routes;
+        $routes = [];
+
+        Route::create(...$route_types);
+
+        [$registered, $routes] = [$routes, $site_routes];
+
+        return $registered;
     }
 }
