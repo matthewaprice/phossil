@@ -9,11 +9,7 @@ class Route
         global $routes;
 
         foreach ($route_types as $route_type) {
-            $routes[] = [
-                'path' => $route_type->path,
-                'view' => $route_type->view,
-                'skip_build' => $route_type->skip_build
-            ];
+            $routes[] = $route_type;
         }
     }
 }

@@ -48,10 +48,9 @@ class RouteTest extends TestCase
             new RouteType(path: 'about', view: AboutStub::class, skip_build: true),
         );
 
-        $this->assertSame([
-            ['path' => '', 'view' => HomeStub::class, 'skip_build' => false],
-            ['path' => 'about', 'view' => AboutStub::class, 'skip_build' => true],
-        ], $routes);
+        $this->assertSame(['', 'about'], array_column($routes, 'path'));
+        $this->assertSame([HomeStub::class, AboutStub::class], array_column($routes, 'view'));
+        $this->assertSame([false, true], array_column($routes, 'skip_build'));
     }
 
     #[Test]
@@ -70,6 +69,7 @@ class RouteTest extends TestCase
     {
         $route_type = new RouteType();
 
+        $this->assertNull($route_type->controller);
         $this->assertSame('', $route_type->path);
         $this->assertSame('', $route_type->view);
         $this->assertFalse($route_type->skip_build);

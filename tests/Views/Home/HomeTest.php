@@ -2,6 +2,7 @@
 
 namespace Phossil\Tests\Views\Home;
 
+use Phossil\Enums\Icon;
 use Phossil\Tests\Views\ViewTestCase;
 use Phossil\Views\Home\Home;
 use PHPUnit\Framework\Attributes\{
@@ -19,10 +20,16 @@ use PHPUnit\Framework\Attributes\{
 #[CoversClass(Home::class)]
 class HomeTest extends ViewTestCase
 {
+    /** Feature title => [icon, description], in the shape HomeController passes. */
+    private const FEATURES = [
+        'First feature' => [Icon::map, 'What the first feature does.'],
+        'Second feature' => [Icon::rocket_launch, 'What the second feature does.'],
+    ];
+
     #[Test]
     public function it_renders_the_banner(): void
     {
-        $home = new Home();
+        $home = new Home(features: self::FEATURES);
 
         $this->assertStringContainsString('Write it in PHP.', $home);
         $this->assertStringContainsString('Ship it as HTML.', $home);
@@ -32,17 +39,18 @@ class HomeTest extends ViewTestCase
     #[Test]
     public function it_renders_a_card_for_each_feature(): void
     {
-        $home = new Home();
+        $home = new Home(features: self::FEATURES);
 
-        $this->assertStringContainsString('Routing', $home);
-        $this->assertStringContainsString('Components', $home);
-        $this->assertStringContainsString('Static build', $home);
+        $this->assertStringContainsString('First feature', $home);
+        $this->assertStringContainsString('What the first feature does.', $home);
+        $this->assertStringContainsString('Second feature', $home);
+        $this->assertStringContainsString('What the second feature does.', $home);
     }
 
     #[Test]
     public function it_renders_inside_the_layout(): void
     {
-        $home = new Home();
+        $home = new Home(features: self::FEATURES);
 
         $this->assertStringContainsString('<title>phossil</title>', $home);
         $this->assertStringContainsString('<meta name="description" content="A small PHP site that builds to static HTML.">', $home);
@@ -51,7 +59,7 @@ class HomeTest extends ViewTestCase
     #[Test]
     public function it_emits_the_banner_dialog_at_the_end_of_the_page(): void
     {
-        $home = new Home();
+        $home = new Home(features: self::FEATURES);
 
         $this->assertStringContainsString('data-dialog-target="#home-dialog"', $home);
         $this->assertStringContainsString('Hello from a dialog', $home);

@@ -22,7 +22,8 @@ class Layout extends Component
     /** The main navigation, as URL => label. */
     private const NAV = [
         '/' => 'Home',
-        '/about/' => 'About'
+        '/about/' => 'About',
+        '/articles/' => 'Articles',
     ];
 
     /** The project's source repository. */
