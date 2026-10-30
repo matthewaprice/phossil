@@ -18,7 +18,7 @@
         <testsuite name="Services">
             <directory>tests/Services</directory>
         </testsuite>
-        <!-- The sample site in phossil/, which uses the package the way a project would. -->
+        <!-- The sample site in app/, which uses the package the way a project would. -->
         <testsuite name="Site">
             <directory>tests/Site</directory>
         </testsuite>
@@ -26,9 +26,9 @@
     <source>
         <include>
             <directory>src</directory>
-            <directory>phossil/components</directory>
-            <directory>phossil/controllers</directory>
-            <directory>phossil/views</directory>
+            <directory>app/components</directory>
+            <directory>app/controllers</directory>
+            <directory>app/views</directory>
         </include>
     </source>
 </phpunit>

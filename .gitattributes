@@ -9,7 +9,7 @@
 /docker              export-ignore
 /docker-compose.yml  export-ignore
 /package.json        export-ignore
-/phossil             export-ignore
+/app                 export-ignore
 /phpunit.xml         export-ignore
 /pnpm-lock.yaml      export-ignore
 /tests               export-ignore

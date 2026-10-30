@@ -49,7 +49,7 @@ You get `dist/`, and `dist.zip` beside it at the root of the repo, ready to uplo
 pnpm format        # oxfmt: JS, CSS, JSON, Markdown
 pnpm format:check  # the same, without writing
 pnpm format:build  # run on the built dist folder
-pnpm lint          # oxlint: phossil/js
+pnpm lint          # oxlint: app/js
 ```
 
 ## Documentation

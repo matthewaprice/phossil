@@ -77,14 +77,14 @@ class Build {
     }
 
     /**
-     * Copies Vite's CSS and JS from phossil/dist/ into the build. Hidden files are
+     * Copies Vite's CSS and JS from the app folder's dist/ into the build. Hidden files are
      * skipped, so the manifest in .vite/ stays behind.
      */
     public function vite() {
 
         $source_dist = $this->app_dir . '/dist';
         if ( !is_dir( $source_dist ) ) {
-            throw new RuntimeException( 'No Vite build in phossil/dist/. Run `pnpm build` first.' );
+            throw new RuntimeException( "No Vite build in {$source_dist}/. Run `pnpm build` first." );
         }
         $this->copyDirectory( $source_dist, $this->dist_dir );
 

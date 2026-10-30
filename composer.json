@@ -24,10 +24,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Components\\": "phossil/components/",
-            "App\\Controllers\\": "phossil/controllers/",
-            "App\\Data\\": "phossil/data/",
-            "App\\Views\\": "phossil/views/",
+            "App\\Components\\": "app/components/",
+            "App\\Controllers\\": "app/controllers/",
+            "App\\Data\\": "app/data/",
+            "App\\Views\\": "app/views/",
             "App\\Tests\\": "tests/Site/",
             "Phossil\\Tests\\": "tests/"
         }
@@ -36,7 +36,7 @@
         "phpunit/phpunit": "^13.4"
     },
     "scripts": {
-        "build": "pnpm build && docker compose exec php php phossil/includes/build.php && pnpm format:build",
+        "build": "pnpm build && docker compose exec php php app/includes/build.php && pnpm format:build",
         "build:zip": [
             "@build",
             "rm -f dist.zip && cd dist && zip -rq ../dist.zip . -x '.*' '*/.*'"

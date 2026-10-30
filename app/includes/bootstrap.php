@@ -13,7 +13,7 @@ $config = require dirname(__DIR__) . '/config.php';
 // Also loads phossil's helpers: e(), asset() and vite().
 require $config['vendor'] . '/autoload.php';
 
-// The phossil directory: phossil reads img/, Vite's hot file and dist/ from it.
+// The app folder: phossil reads img/, Vite's hot file and dist/ from it.
 Phossil::boot(dirname(__DIR__), $config);
 
 require dirname(__DIR__) . '/routes/web.php';

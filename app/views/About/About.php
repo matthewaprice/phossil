@@ -124,11 +124,11 @@ readonly class About extends View
 
                     <?= $this->heading( 'adding-a-page' ); ?>
                     <p class="mt-4">
-                        A page is a route and a view class. Create <code>phossil/views/NewPage/NewPage.php</code>, a
+                        A page is a route and a view class. Create <code>app/views/NewPage/NewPage.php</code>, a
                         <code>readonly</code> class that extends <code>Phossil\Components\View</code>:
                     </p>
                     <?= $this->codeBlock( self::EXAMPLE_VIEW ); ?>
-                    <p class="mt-4">Then add a <code>RouteType</code> for it to <code>phossil/routes/web.php</code>:</p>
+                    <p class="mt-4">Then add a <code>RouteType</code> for it to <code>app/routes/web.php</code>:</p>
                     <?= $this->codeBlock( self::EXAMPLE_ROUTE ); ?>
                     <p class="mt-4">
                         It's served at <code>/new-page/</code> straight away, and the next build writes
@@ -136,7 +136,7 @@ readonly class About extends View
                         <code>Layout::NAV</code>.
                     </p>
                     <p class="mt-4">
-                        In development, nginx sends each request to <code>phossil/index.php</code>, and the router
+                        In development, nginx sends each request to <code>app/index.php</code>, and the router
                         echoes the matching view, or the 404 page when nothing matches. The build reads the same list,
                         so the site you preview is the site you ship. A route with <code>skip_build: true</code> is
                         still served in development, but the build leaves it out, so a live site shows only the pages
@@ -158,7 +158,7 @@ readonly class About extends View
                         comes with <code>Anchor</code>, <code>Button</code>, <code>ButtonGroup</code>,
                         <code>Badge</code>, <code>Card</code>, <code>DescriptionList</code> and <code>Dialog</code>, in
                         <code>Phossil\Components</code>. The page chrome is your own <code>Layout</code>, in
-                        <code>phossil/components/</code>.
+                        <code>app/components/</code>.
                     </p>
                     <p class="mt-4">
                         The router creates each view with <code>new</code> and no arguments, so a view's constructor is
@@ -208,7 +208,7 @@ readonly class About extends View
                                     new DescriptionListItem( dt: '<code>composer build:zip</code>', dd: e( 'Build, then zip dist/ into dist.zip.' ) ),
                                     new DescriptionListItem( dt: '<code>pnpm format</code>', dd: e( 'Format JS, CSS, JSON and Markdown with oxfmt.' ) ),
                                     new DescriptionListItem( dt: '<code>pnpm format:check</code>', dd: e( 'Check formatting without writing changes.' ) ),
-                                    new DescriptionListItem( dt: '<code>pnpm lint</code>', dd: e( 'Check the JS in phossil/js with oxlint.' ) ),
+                                    new DescriptionListItem( dt: '<code>pnpm lint</code>', dd: e( 'Check the JS in app/js with oxlint.' ) ),
                                 ]
                             )
                         );

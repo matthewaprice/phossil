@@ -11,7 +11,7 @@ if (!function_exists('asset')) {
      * browser's cache for exactly the files that changed. CSS and JS go through
      * vite() instead.
      *
-     * @param string $path Path inside the phossil folder, e.g. 'img/phossil-logo.svg'.
+     * @param string $path Path inside the app folder, e.g. 'img/phossil-logo.svg'.
      * @return string The URL, e.g. '/assets/img/phossil-logo.svg?v=1761490000'.
      */
     function asset(string $path): string
@@ -28,7 +28,7 @@ if (!function_exists('vite')) {
     /**
      * Writes the tags that load Vite entries, like Laravel's @vite directive.
      *
-     * @param string ...$entries Paths inside the phossil folder, e.g. 'css/app.css', 'js/app.js'.
+     * @param string ...$entries Paths inside the app folder, e.g. 'css/app.css', 'js/app.js'.
      * @return string <link> and <script> tags for the dev server or the built files.
      */
     function vite(string ...$entries): string

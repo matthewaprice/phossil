@@ -5,7 +5,7 @@ namespace App\Tests\Support;
 use Phossil\Phossil;
 
 /**
- * Points the app at a stand-in phossil directory whose `hot` file names a Vite
+ * Points the app at a stand-in app folder whose `hot` file names a Vite
  * dev server, so vite() writes the same tags whether or not the vite container
  * runs. The real img/ is linked in, so asset() still resolves.
  *
@@ -13,10 +13,10 @@ use Phossil\Phossil;
  */
 trait FakesViteDevServer
 {
-    /** The real phossil directory, restored by stopFakeViteDevServer(). */
+    /** The real app folder, restored by stopFakeViteDevServer(). */
     private string $real_root;
 
-    /** The stand-in phossil directory. */
+    /** The stand-in app folder. */
     private string $fake_root;
 
     protected function startFakeViteDevServer(): void

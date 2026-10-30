@@ -7,9 +7,9 @@ use RuntimeException;
 
 /**
  * Writes the tags that load Vite entries: from the dev server while it runs,
- * otherwise the hashed files that `pnpm build` writes to phossil/dist/.
+ * otherwise the hashed files that `pnpm build` writes to the app folder's dist/.
  *
- * The vite container writes phossil/hot, holding the dev server's URL, while it runs.
+ * The vite container writes a hot file in the app folder, holding the dev server's URL, while it runs.
  *
  * @author Matthew A Price
  */
@@ -18,7 +18,7 @@ class Vite
     /**
      * The tags for some entries, in the order given.
      *
-     * @param string ...$entries Paths inside the phossil folder, e.g. 'css/app.css'.
+     * @param string ...$entries Paths inside the app folder, e.g. 'css/app.css'.
      * @return string <link> and <script> tags, one per line.
      */
     public static function tags(string ...$entries): string
@@ -102,7 +102,7 @@ class Vite
      * Every CSS file a chunk needs, its own and its imports'.
      *
      * @param array<string, array<string, mixed>> $manifest
-     * @return list<string> Paths inside phossil/dist/.
+     * @return list<string> Paths inside the app folder's dist/.
      */
     private static function css(array $manifest, string $key): array
     {
@@ -117,7 +117,7 @@ class Vite
     }
 
     /**
-     * Reads phossil/dist/.vite/manifest.json, which maps each source file to its hashed build.
+     * Reads the app folder's dist/.vite/manifest.json, which maps each source file to its hashed build.
      *
      * @return array<string, array<string, mixed>>
      */
@@ -125,7 +125,7 @@ class Vite
     {
         $file = Phossil::path('dist/.vite/manifest.json');
         if (!is_file($file)) {
-            throw new RuntimeException('No Vite build in phossil/dist/. Start the vite container with `docker compose up -d`, or run `pnpm build`.');
+            throw new RuntimeException('No Vite build in ' . Phossil::path('dist') . '/. Start the vite container with `docker compose up -d`, or run `pnpm build`.');
         }
 
         return json_decode(file_get_contents($file), true, flags: JSON_THROW_ON_ERROR);

@@ -3,7 +3,7 @@ import { resolve } from "node:path"
 import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "vite"
 
-const app = resolve(import.meta.dirname, "phossil")
+const app = resolve(import.meta.dirname, "app")
 
 // phossil's components, outside the app folder Vite watches by default.
 const src = resolve(import.meta.dirname, "src")
@@ -12,7 +12,7 @@ const src = resolve(import.meta.dirname, "src")
 // so it can't work this out for itself.
 const origin = "http://localhost:5173"
 
-// Writes phossil/hot while the dev server runs, so PHP links the page to it
+// Writes app/hot while the dev server runs, so PHP links the page to it
 // instead of to the built files.
 function hotFile() {
   const file = resolve(app, "hot")
@@ -64,7 +64,7 @@ export default defineConfig({
     },
   },
   build: {
-    // phossil/dist/assets/, served at /assets/ beside the images. The build copies
+    // app/dist/assets/, served at /assets/ beside the images. The build copies
     // it into dist/, and PHP reads the manifest to link the hashed files.
     outDir: "dist",
     emptyOutDir: true,
