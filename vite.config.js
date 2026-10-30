@@ -5,6 +5,9 @@ import { defineConfig } from "vite"
 
 const app = resolve(import.meta.dirname, "phossil")
 
+// phossil's components, outside the app folder Vite watches by default.
+const src = resolve(import.meta.dirname, "src")
+
 // Where the browser reaches the dev server. It runs in the vite container,
 // so it can't work this out for itself.
 const origin = "http://localhost:5173"
@@ -34,6 +37,7 @@ function reloadOnPhp() {
   return {
     name: "reload-on-php",
     configureServer(server) {
+      server.watcher.add(src)
       const reload = (file) => {
         if (file.endsWith(".php")) {
           server.environments.client.moduleGraph.invalidateAll()

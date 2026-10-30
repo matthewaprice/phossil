@@ -1,12 +1,12 @@
 <?php
 
-namespace Phossil\Tests\Views;
+namespace App\Tests\Views;
 
 use Phossil\Components\{
     Component,
     Dialog
 };
-use Phossil\Tests\Support\FakesViteDevServer;
+use App\Tests\Support\FakesViteDevServer;
 use PHPUnit\Framework\TestCase;
 
 /**

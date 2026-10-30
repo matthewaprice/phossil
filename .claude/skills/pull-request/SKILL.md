@@ -12,7 +12,7 @@ description: Write the current branch's PR description in the house format (Titl
 3. Check for an existing PR with `gh pr view --json number,state,url`. If one is `OPEN` for this branch, **stop**: report its number and URL, print the description for manual copy-paste, and do not edit or create anything. Re-running against a live PR is the user's call, not the skill's. An error saying no PR exists, or a closed or merged one, means carry on.
 4. Base the description on the real branch contents: `git log main..HEAD` and `git diff -M main..HEAD`. Describe everything in the branch, not just work from the current conversation. If `git log main..HEAD` is empty, stop — the branch has no commits to propose.
    - Start from `git diff -M --stat main..HEAD`. `-M` shows moved files as renames rather than a delete and an add.
-   - Don't read the SVGs under `phossil/img/heroicons/` or anything in `dist/`. Summarize icon changes by count.
+   - Don't read the SVGs under `resources/heroicons/` or anything in `dist/`. Summarize icon changes by count.
 
 ## Checks
 

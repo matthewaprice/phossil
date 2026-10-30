@@ -1,6 +1,8 @@
 <?php
 
-namespace Phossil\Components;
+namespace App\Components;
+
+use Phossil\Components\ComponentOptions;
 
 /**
  * Configuration for the Layout component.

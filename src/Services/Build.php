@@ -2,7 +2,11 @@
 
 namespace Phossil\Services;
 
-use Phossil\Services\Router\RouteType;
+use Phossil\Phossil;
+use Phossil\Services\Router\{
+    Route,
+    RouteType
+};
 use RuntimeException;
 
 /**
@@ -19,11 +23,9 @@ class Build {
 
     public function __construct() {
 
-        global $app;
-
-        $this->app_dir = $app->root;
-        // dist/ sits next to phossil/ in the repo.
-        $this->dist_dir = dirname( $app->root ) . '/dist';
+        $this->app_dir = Phossil::root();
+        // dist/ sits next to the app folder.
+        $this->dist_dir = dirname( $this->app_dir ) . '/dist';
 
     }
 
@@ -54,25 +56,22 @@ class Build {
      */
     public function urls(): array {
 
-        global $routes;
-
         return array_values( array_unique( array_map(
             fn( RouteType $route ) => '/' . $route->path,
-            array_filter( $routes, fn( RouteType $route ) => !$route->skip_build )
+            array_filter( Route::$routes, fn( RouteType $route ) => !$route->skip_build )
         ) ) );
 
     }
 
     /**
-     * Copies img/ into the build, except the heroicons. Heroicon writes each icon a
-     * page uses into its HTML, so no page links those files.
+     * Copies img/ into the build.
      */
     public function images() {
 
         $source_img = $this->app_dir . '/img';
         $dest_img = $this->dist_dir . '/' . $this->assets() . '/img';
         if ( file_exists( $source_img ) ) {
-            $this->copyDirectory( $source_img, $dest_img, [ 'heroicons' ] );
+            $this->copyDirectory( $source_img, $dest_img );
         }
 
     }
@@ -149,9 +148,7 @@ class Build {
      */
     protected function assets(): string {
 
-        global $app;
-
-        return ltrim( $app->config['assets'], '/' );
+        return ltrim( Phossil::config( 'assets' ), '/' );
 
     }
 
@@ -166,10 +163,8 @@ class Build {
 
     /**
      * Copies a directory recursively, leaving out hidden files such as .DS_Store.
-     *
-     * @param list<string> $exclude Names directly inside $source to leave out, such as 'heroicons'.
      */
-    public function copyDirectory( string $source, string $destination, array $exclude = [] ) {
+    public function copyDirectory( string $source, string $destination ) {
         if ( !is_dir( $source ) ) {
             return false;
         }
@@ -180,7 +175,7 @@ class Build {
 
         $dir = opendir( $source );
         while ( false !== ( $file = readdir( $dir ) ) ) {
-            if ( $file[0] !== '.' && !in_array( $file, $exclude, true ) ) {
+            if ( $file[0] !== '.' ) {
                 $src_path = $source . '/' . $file;
                 $dest_path = $destination . '/' . $file;
 

@@ -21,17 +21,13 @@ class BuildTest extends TestCase
 
     protected function setUp(): void
     {
-        global $routes;
-
-        $this->site_routes = $routes;
-        $routes = [];
+        $this->site_routes = Route::$routes;
+        Route::$routes = [];
     }
 
     protected function tearDown(): void
     {
-        global $routes;
-
-        $routes = $this->site_routes;
+        Route::$routes = $this->site_routes;
     }
 
     #[Test]

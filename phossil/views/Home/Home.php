@@ -1,12 +1,12 @@
 <?php
 
-namespace Phossil\Views\Home;
+namespace App\Views\Home;
 
-use Phossil\Components\{
+use App\Components\{
     Layout,
-    LayoutOptions,
-    View
+    LayoutOptions
 };
+use Phossil\Components\View;
 
 readonly class Home extends View
 {

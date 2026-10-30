@@ -1,11 +1,11 @@
 <?php
 
-namespace Phossil\Tests\Controllers\Articles;
+namespace App\Tests\Controllers\Articles;
 
-use Phossil\Controllers\Articles\ArticlesController;
-use Phossil\Data\ArticlesData;
+use App\Controllers\Articles\ArticlesController;
+use App\Data\ArticlesData;
 use Phossil\Services\Router\RouteType;
-use Phossil\Views\Articles\Articles;
+use App\Views\Articles\Articles;
 use PHPUnit\Framework\Attributes\{
     CoversClass,
     Test

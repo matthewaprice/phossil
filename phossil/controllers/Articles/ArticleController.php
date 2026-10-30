@@ -1,12 +1,12 @@
 <?php
 
-namespace Phossil\Controllers\Articles;
+namespace App\Controllers\Articles;
 
 use Phossil\Components\View;
-use Phossil\Data\ArticlesData;
+use App\Data\ArticlesData;
 use Phossil\Services\Controller;
-use Phossil\Views\Articles\Article;
-use Phossil\Views\NotFound\NotFound;
+use App\Views\Articles\Article;
+use App\Views\NotFound\NotFound;
 
 class ArticleController extends Controller
 {

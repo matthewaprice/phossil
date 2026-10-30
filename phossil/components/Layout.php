@@ -1,7 +1,13 @@
 <?php
 
-namespace Phossil\Components;
+namespace App\Components;
 
+use Phossil\Components\{
+    Anchor,
+    AnchorOptions,
+    Component,
+    Dialog
+};
 use Phossil\Enums\{
     HeroiconSize,
     HeroiconStyle,

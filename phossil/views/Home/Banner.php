@@ -1,6 +1,6 @@
 <?php
 
-namespace Phossil\Views\Home;
+namespace App\Views\Home;
 
 use Phossil\Components\{
     Anchor,

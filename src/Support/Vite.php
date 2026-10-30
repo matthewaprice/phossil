@@ -2,6 +2,7 @@
 
 namespace Phossil\Support;
 
+use Phossil\Phossil;
 use RuntimeException;
 
 /**
@@ -39,9 +40,7 @@ class Vite
      */
     private static function devServer(): ?string
     {
-        global $app;
-
-        $hot = $app->root . '/hot';
+        $hot = Phossil::path('hot');
         if (isset($_SERVER['HTTP_X_STATIC_BUILD']) || !is_file($hot)) {
             return null;
         }
@@ -124,9 +123,7 @@ class Vite
      */
     private static function manifest(): array
     {
-        global $app;
-
-        $file = $app->root . '/dist/.vite/manifest.json';
+        $file = Phossil::path('dist/.vite/manifest.json');
         if (!is_file($file)) {
             throw new RuntimeException('No Vite build in phossil/dist/. Start the vite container with `docker compose up -d`, or run `pnpm build`.');
         }

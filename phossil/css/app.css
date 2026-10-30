@@ -1,8 +1,9 @@
 @import "tailwindcss" source(none);
 @import "@fontsource-variable/inter";
 
-/* Classes are only ever written in the PHP templates */
+/* Classes are only ever written in the PHP templates: the site's and phossil's components */
 @source "../**/*.php";
+@source "../../src/**/*.php";
 
 /* The brand color, as primary-*, so changing it is a one-line edit */
 @theme {

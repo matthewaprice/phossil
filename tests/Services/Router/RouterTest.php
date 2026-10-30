@@ -11,9 +11,9 @@ use Phossil\Services\Router\{
 use Phossil\Tests\Services\Router\Fixtures\{
     AboutStub,
     HomeStub,
+    NotFoundStub,
     PathStubController
 };
-use Phossil\Tests\Support\FakesViteDevServer;
 use PHPUnit\Framework\Attributes\{
     CoversClass,
     RunInSeparateProcess,
@@ -24,20 +24,13 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Router::class)]
 class RouterTest extends TestCase
 {
-    use FakesViteDevServer;
-
     protected function setUp(): void
     {
         unset($_SERVER['REQUEST_URI']);
-
-        // The 404 page renders through the Layout, which writes Vite tags.
-        $this->startFakeViteDevServer();
     }
 
     protected function tearDown(): void
     {
-        $this->stopFakeViteDevServer();
-
         unset($_SERVER['REQUEST_URI']);
     }
 
@@ -90,19 +83,19 @@ class RouterTest extends TestCase
         $html = $this->process('/missing/');
 
         $this->assertSame(404, http_response_code());
-        $this->assertStringContainsString('Page not found - 404', $html);
+        $this->assertSame('<p>not found</p>', $html);
     }
 
     #[Test]
     #[RunInSeparateProcess]
     public function it_renders_the_not_found_page_when_the_view_class_does_not_exist(): void
     {
-        $routes = $this->register(new RouteType(path: 'broken', view: 'Phossil\Views\Missing'));
+        $routes = $this->register(new RouteType(path: 'broken', view: 'Phossil\Tests\Missing'));
 
         $html = $this->process('/broken/', $routes);
 
         $this->assertSame(404, http_response_code());
-        $this->assertStringContainsString('Page not found - 404', $html);
+        $this->assertSame('<p>not found</p>', $html);
     }
 
     #[Test]
@@ -112,7 +105,7 @@ class RouterTest extends TestCase
         $html = $this->process('/articles/article-3/', $this->articleRoutes());
 
         $this->assertSame(404, http_response_code());
-        $this->assertStringContainsString('Page not found - 404', $html);
+        $this->assertSame('<p>not found</p>', $html);
     }
 
     #[Test]
@@ -122,7 +115,21 @@ class RouterTest extends TestCase
         $html = $this->process('/articles/missing/', $this->articleRoutes());
 
         $this->assertSame(404, http_response_code());
-        $this->assertStringContainsString('Page not found - 404', $html);
+        $this->assertSame('<p>not found</p>', $html);
+    }
+
+    #[Test]
+    #[RunInSeparateProcess]
+    public function it_answers_a_plain_not_found_without_a_not_found_view(): void
+    {
+        $_SERVER['REQUEST_URI'] = '/missing/';
+
+        ob_start();
+        new Router([])->process();
+        $html = (string) ob_get_clean();
+
+        $this->assertSame(404, http_response_code());
+        $this->assertSame('Not Found', $html);
     }
 
     /**
@@ -140,7 +147,7 @@ class RouterTest extends TestCase
         );
 
         ob_start();
-        new Router($routes)->process();
+        new Router($routes, not_found: NotFoundStub::class)->process();
         return (string) ob_get_clean();
     }
 
@@ -171,14 +178,12 @@ class RouterTest extends TestCase
      */
     private function register(RouteType ...$route_types): array
     {
-        global $routes;
-
-        $site_routes = $routes;
-        $routes = [];
+        $site_routes = Route::$routes;
+        Route::$routes = [];
 
         Route::create(...$route_types);
 
-        [$registered, $routes] = [$routes, $site_routes];
+        [$registered, Route::$routes] = [Route::$routes, $site_routes];
 
         return $registered;
     }

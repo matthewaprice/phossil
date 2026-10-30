@@ -1,15 +1,15 @@
 <?php
 
-use Phossil\Controllers\Articles\ArticleController;
-use Phossil\Controllers\Articles\ArticlesController;
-use Phossil\Controllers\Home\HomeController;
-use Phossil\Data\ArticlesData;
+use App\Controllers\Articles\ArticleController;
+use App\Controllers\Articles\ArticlesController;
+use App\Controllers\Home\HomeController;
+use App\Data\ArticlesData;
 use Phossil\Services\Router\{
     Route,
     RouteController,
     RouteType
 };
-use Phossil\Views\About\About;
+use App\Views\About\About;
 
 Route::create(
     ...array_map(

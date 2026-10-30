@@ -1,9 +1,9 @@
 <?php
 
-namespace Phossil\Controllers\Home;
+namespace App\Controllers\Home;
 
 use Phossil\Enums\Icon;
-use Phossil\Views\Home\Home;
+use App\Views\Home\Home;
 
 class HomeController
 {

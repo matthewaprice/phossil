@@ -1,14 +1,16 @@
 <?php
 
-namespace Phossil\Tests\Components;
+namespace App\Tests\Components;
 
-use Phossil\Components\{
-    Dialog,
-    DialogOptions,
+use App\Components\{
     Layout,
     LayoutOptions
 };
-use Phossil\Tests\Support\FakesViteDevServer;
+use App\Tests\Views\ViewTestCase;
+use Phossil\Components\{
+    Dialog,
+    DialogOptions
+};
 use PHPUnit\Framework\Attributes\{
     CoversClass,
     Test
@@ -16,22 +18,8 @@ use PHPUnit\Framework\Attributes\{
 
 #[CoversClass(Layout::class)]
 #[CoversClass(LayoutOptions::class)]
-class LayoutTest extends ComponentTestCase
+class LayoutTest extends ViewTestCase
 {
-    use FakesViteDevServer;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->startFakeViteDevServer();
-    }
-
-    protected function tearDown(): void
-    {
-        $this->stopFakeViteDevServer();
-        parent::tearDown();
-    }
-
     #[Test]
     public function it_renders_a_whole_page(): void
     {
@@ -143,6 +131,8 @@ class LayoutTest extends ComponentTestCase
      */
     private function layout(mixed ...$options): string
     {
-        return $this->echoed(fn () => Layout::create(new LayoutOptions(...$options)));
+        ob_start();
+        Layout::create(new LayoutOptions(...$options));
+        return (string) ob_get_clean();
     }
 }

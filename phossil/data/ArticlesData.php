@@ -1,6 +1,6 @@
 <?php
 
-namespace Phossil\Data;
+namespace App\Data;
 
 class ArticlesData
 {

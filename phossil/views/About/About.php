@@ -1,13 +1,15 @@
 <?php
 
-namespace Phossil\Views\About;
+namespace App\Views\About;
 
+use App\Components\{
+    Layout,
+    LayoutOptions
+};
 use Phossil\Components\{
     DescriptionList,
     DescriptionListItem,
     DescriptionListOptions,
-    Layout,
-    LayoutOptions,
     View
 };
 
@@ -27,10 +29,10 @@ readonly class About extends View
     private const EXAMPLE_VIEW = <<<'PHP'
         <?php
 
-        namespace Phossil\Views\NewPage;
+        namespace App\Views\NewPage;
 
-        use Phossil\Components\Layout;
-        use Phossil\Components\LayoutOptions;
+        use App\Components\Layout;
+        use App\Components\LayoutOptions;
         use Phossil\Components\View;
 
         readonly class NewPage extends View
@@ -154,8 +156,9 @@ readonly class About extends View
                         there's no template language to learn. Components echo their markup by default. Pass
                         <code>ob: true</code> to get it back as a string instead, to hand to another component. phossil
                         comes with <code>Anchor</code>, <code>Button</code>, <code>ButtonGroup</code>,
-                        <code>Badge</code>, <code>Card</code>, <code>DescriptionList</code>, <code>Dialog</code> and
-                        <code>Layout</code>, all in <code>phossil/components/</code>.
+                        <code>Badge</code>, <code>Card</code>, <code>DescriptionList</code> and <code>Dialog</code>, in
+                        <code>Phossil\Components</code>. The page chrome is your own <code>Layout</code>, in
+                        <code>phossil/components/</code>.
                     </p>
                     <p class="mt-4">
                         The router creates each view with <code>new</code> and no arguments, so a view's constructor is

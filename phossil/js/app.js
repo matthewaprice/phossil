@@ -1,4 +1,4 @@
-import { initDialogs } from "./dialog.js"
+import { initDialogs } from "../../resources/js/dialog.js"
 
 // Dialogs: a .dialog-trigger opens the <dialog> its data-dialog-target selects
 initDialogs()

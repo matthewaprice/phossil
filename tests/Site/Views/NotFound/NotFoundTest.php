@@ -1,9 +1,9 @@
 <?php
 
-namespace Phossil\Tests\Views\NotFound;
+namespace App\Tests\Views\NotFound;
 
-use Phossil\Tests\Views\ViewTestCase;
-use Phossil\Views\NotFound\NotFound;
+use App\Tests\Views\ViewTestCase;
+use App\Views\NotFound\NotFound;
 use PHPUnit\Framework\Attributes\{
     CoversClass,
     Test

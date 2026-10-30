@@ -1,6 +1,9 @@
 {
-    "name": "matthewprice/phossil",
-    "description": "A small PHP site with routing and components that builds to static HTML.",
+    "name": "matthewaprice/phossil",
+    "description": "Routing, typed views and components for PHP sites that build to static HTML.",
+    "type": "library",
+    "keywords": ["static-site", "static-site-generator", "router", "components", "tailwind", "vite"],
+    "homepage": "https://phossil.dev",
     "license": "MIT",
     "authors": [
         {
@@ -13,17 +16,19 @@
     },
     "autoload": {
         "psr-4": {
-            "Phossil\\Controllers\\": "phossil/controllers/",
-            "Phossil\\Components\\": "phossil/components/",
-            "Phossil\\Data\\": "phossil/data/",
-            "Phossil\\Enums\\": "phossil/enums/",
-            "Phossil\\Services\\": "phossil/services/",
-            "Phossil\\Support\\": "phossil/support/",
-            "Phossil\\Views\\": "phossil/views/"
-        }
+            "Phossil\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
+            "App\\Components\\": "phossil/components/",
+            "App\\Controllers\\": "phossil/controllers/",
+            "App\\Data\\": "phossil/data/",
+            "App\\Views\\": "phossil/views/",
+            "App\\Tests\\": "tests/Site/",
             "Phossil\\Tests\\": "tests/"
         }
     },

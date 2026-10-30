@@ -3,15 +3,17 @@
 namespace Phossil\Services\Router;
 
 use Phossil\Support\Request;
-use Phossil\Views\NotFound\NotFound;
 
 class Router
 {
     /**
-     * @param list<RouteType> $routes The routes Route::create() registered.
+     * @param list<RouteType> $routes    The routes Route::create() registered.
+     * @param string          $not_found Class name of the View for the 404 page; without one, it's a plain 'Not Found'.
      */
-    public function __construct(private readonly array $routes)
-    {
+    public function __construct(
+        private readonly array $routes,
+        private readonly string $not_found = ''
+    ) {
     }
 
     /**
@@ -35,7 +37,7 @@ class Router
         }
 
         http_response_code(404);
-        echo new NotFound();
+        echo class_exists($this->not_found) ? new $this->not_found() : 'Not Found';
     }
 
     /**

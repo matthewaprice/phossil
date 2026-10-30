@@ -1,12 +1,14 @@
 <?php
 
-namespace Phossil\Views\NotFound;
+namespace App\Views\NotFound;
 
+use App\Components\{
+    Layout,
+    LayoutOptions
+};
 use Phossil\Components\{
     Anchor,
     AnchorOptions,
-    Layout,
-    LayoutOptions,
     View
 };
 

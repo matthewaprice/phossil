@@ -1,12 +1,12 @@
 <?php
 
-namespace Phossil\Tests\Controllers\Articles;
+namespace App\Tests\Controllers\Articles;
 
-use Phossil\Controllers\Articles\ArticleController;
-use Phossil\Data\ArticlesData;
+use App\Controllers\Articles\ArticleController;
+use App\Data\ArticlesData;
 use Phossil\Services\Router\RouteType;
-use Phossil\Views\Articles\Article;
-use Phossil\Views\NotFound\NotFound;
+use App\Views\Articles\Article;
+use App\Views\NotFound\NotFound;
 use PHPUnit\Framework\Attributes\{
     CoversClass,
     DataProvider,

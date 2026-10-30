@@ -1,10 +1,10 @@
 <?php
 
-namespace Phossil\Controllers\Articles;
+namespace App\Controllers\Articles;
 
-use Phossil\Data\ArticlesData;
+use App\Data\ArticlesData;
 use Phossil\Services\Controller;
-use Phossil\Views\Articles\Articles;
+use App\Views\Articles\Articles;
 
 class ArticlesController extends Controller
 {

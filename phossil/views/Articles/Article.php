@@ -1,11 +1,11 @@
 <?php
 
-namespace Phossil\Views\Articles;
+namespace App\Views\Articles;
 
+use App\Components\Layout;
+use App\Components\LayoutOptions;
 use Phossil\Components\Card;
 use Phossil\Components\CardOptions;
-use Phossil\Components\Layout;
-use Phossil\Components\LayoutOptions;
 use Phossil\Components\View;
 
 readonly class Article extends View

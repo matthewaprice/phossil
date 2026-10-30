@@ -1,10 +1,10 @@
 <?php
 
-namespace Phossil\Tests\Controllers\Home;
+namespace App\Tests\Controllers\Home;
 
-use Phossil\Controllers\Home\HomeController;
+use App\Controllers\Home\HomeController;
 use Phossil\Enums\Icon;
-use Phossil\Views\Home\Home;
+use App\Views\Home\Home;
 use PHPUnit\Framework\Attributes\{
     CoversClass,
     Test

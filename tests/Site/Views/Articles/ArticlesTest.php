@@ -1,9 +1,9 @@
 <?php
 
-namespace Phossil\Tests\Views\Articles;
+namespace App\Tests\Views\Articles;
 
-use Phossil\Tests\Views\ViewTestCase;
-use Phossil\Views\Articles\Articles;
+use App\Tests\Views\ViewTestCase;
+use App\Views\Articles\Articles;
 use PHPUnit\Framework\Attributes\{
     CoversClass,
     Test

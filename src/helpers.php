@@ -1,0 +1,59 @@
+<?php
+
+// phossil's global helpers, loaded by Composer's autoloader. Each one is skipped
+// when the project already defines a function of that name.
+
+if (!function_exists('asset')) {
+    /**
+     * Builds the URL of a file we serve as it is, such as a site image.
+     *
+     * Adds the file's modified time as a version, so a new build busts the
+     * browser's cache for exactly the files that changed. CSS and JS go through
+     * vite() instead.
+     *
+     * @param string $path Path inside the phossil folder, e.g. 'img/phossil-logo.svg'.
+     * @return string The URL, e.g. '/assets/img/phossil-logo.svg?v=1761490000'.
+     */
+    function asset(string $path): string
+    {
+        $path = ltrim($path, '/');
+        $file = \Phossil\Phossil::path($path);
+        $version = is_file($file) ? '?v=' . filemtime($file) : '';
+
+        return \Phossil\Phossil::config('assets') . '/' . $path . $version;
+    }
+}
+
+if (!function_exists('vite')) {
+    /**
+     * Writes the tags that load Vite entries, like Laravel's @vite directive.
+     *
+     * @param string ...$entries Paths inside the phossil folder, e.g. 'css/app.css', 'js/app.js'.
+     * @return string <link> and <script> tags for the dev server or the built files.
+     */
+    function vite(string ...$entries): string
+    {
+        return \Phossil\Support\Vite::tags(...$entries);
+    }
+}
+
+if (!function_exists('e')) {
+    /**
+     * Escapes a value for safe output in HTML, like Laravel's e() helper.
+     *
+     * Converts special characters, including single and double quotes, to HTML
+     * entities, so it is safe in element content and quoted attributes.
+     *
+     * @param \BackedEnum|string|int|float|null $value The value to escape; null becomes '' and a backed enum uses its value.
+     * @param bool $double_encode Whether to re-encode existing entities such as '&amp;'.
+     * @return string The escaped string.
+     */
+    function e(\BackedEnum|string|int|float|null $value, bool $double_encode = true): string
+    {
+        if ($value instanceof \BackedEnum) {
+            $value = $value->value;
+        }
+
+        return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8', $double_encode);
+    }
+}

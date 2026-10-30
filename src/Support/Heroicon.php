@@ -12,7 +12,7 @@ use RuntimeException;
 /**
  * Heroicon
  *
- * Renders inline SVG heroicons from public/vendor/heroicons based on
+ * Renders inline SVG heroicons from the package's resources/heroicons based on
  * name, size, and outline/solid style.
  *
  * @author Matthew A Price
@@ -67,15 +67,13 @@ class Heroicon
      */
     private static function load(string $name, HeroiconSize $size, HeroiconStyle $style): string
     {
-        global $app;
-
         $key = "{$size->value}/{$style->value}/{$name}";
 
         if (isset(self::$cache[$key])) {
             return self::$cache[$key];
         }
 
-        $path = $app->root . "/img/heroicons/{$key}.svg";
+        $path = dirname(__DIR__, 2) . "/resources/heroicons/{$key}.svg";
 
         if (!is_file($path)) {
             throw new RuntimeException("Heroicon [{$name}] not found for size {$size->value} ({$style->value}).");

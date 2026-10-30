@@ -1,10 +1,10 @@
 <?php
 
-namespace Phossil\Tests\Views\Home;
+namespace App\Tests\Views\Home;
 
 use Phossil\Enums\Icon;
-use Phossil\Tests\Views\ViewTestCase;
-use Phossil\Views\Home\Home;
+use App\Tests\Views\ViewTestCase;
+use App\Views\Home\Home;
 use PHPUnit\Framework\Attributes\{
     CoversClass,
     Test

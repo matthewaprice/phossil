@@ -24,6 +24,9 @@ services:
       - "5173:5173"
     volumes:
       - ./phossil:/srv/phossil
+      # phossil's components, for Tailwind's classes, and the dialog script.
+      - ./src:/srv/src:ro
+      - ./resources:/srv/resources:ro
       - ./vite.config.js:/srv/vite.config.js:ro
       - ./package.json:/srv/package.json:ro
       - ./pnpm-lock.yaml:/srv/pnpm-lock.yaml:ro
