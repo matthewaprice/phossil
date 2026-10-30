@@ -18,6 +18,9 @@
         <testsuite name="Services">
             <directory>tests/Services</directory>
         </testsuite>
+        <testsuite name="Composer">
+            <directory>tests/Composer</directory>
+        </testsuite>
         <!-- The sample site in app/, which uses the package the way a project would. -->
         <testsuite name="Site">
             <directory>tests/Site</directory>
