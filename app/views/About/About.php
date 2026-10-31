@@ -89,7 +89,7 @@ readonly class About extends View
             <article class="shell py-4">
                 <div class="text-zinc-600">
                     <p class="mt-6 text-lg">
-                        Write it in PHP. Ship it as HTML. phossil is a small PHP site kit designed to deploy static
+                        Write it in PHP. Ship it as HTML. phossil is a PHP site kit designed to deploy static
                         HTML files and assets. You get routes, typed views and components while you build, and a folder
                         of static files when you deploy.
                     </p>

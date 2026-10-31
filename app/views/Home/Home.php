@@ -20,7 +20,7 @@ readonly class Home extends View
             Layout::create(
                 new LayoutOptions(
                     content: $this->content(),
-                    description: 'A small PHP site that builds to static HTML.'
+                    description: 'A PHP site that builds to static HTML.'
                 )
             );
         });

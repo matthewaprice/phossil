@@ -53,7 +53,7 @@ class HomeTest extends ViewTestCase
         $home = new Home(features: self::FEATURES);
 
         $this->assertStringContainsString('<title>phossil</title>', $home);
-        $this->assertStringContainsString('<meta name="description" content="A small PHP site that builds to static HTML.">', $home);
+        $this->assertStringContainsString('<meta name="description" content="A PHP site that builds to static HTML.">', $home);
     }
 
     #[Test]
