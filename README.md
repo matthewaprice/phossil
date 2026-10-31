@@ -1,5 +1,7 @@
 # phossil
 
+> Note: This repository contains the core for the phossil site kit. To create an application with phossil, visit [matthewaprice/phossil-starter](https://packagist.org/packages/matthewaprice/phossil-starter)
+
 phossil is a PHP site kit with routing and typed components that builds to plain static HTML, ready for AWS Amplify or any static host.
 
 You get routes, typed views and components while you build, and a folder of static files when you deploy.
