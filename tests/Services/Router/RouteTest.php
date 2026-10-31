@@ -25,43 +25,35 @@ class RouteTest extends TestCase
 
     protected function setUp(): void
     {
-        global $routes;
-
-        $this->site_routes = $routes;
-        $routes = [];
+        $this->site_routes = Route::$routes;
+        Route::$routes = [];
     }
 
     protected function tearDown(): void
     {
-        global $routes;
-
-        $routes = $this->site_routes;
+        Route::$routes = $this->site_routes;
     }
 
     #[Test]
     public function it_registers_each_route_in_order(): void
     {
-        global $routes;
-
         Route::create(
             new RouteType(path: '', view: HomeStub::class),
             new RouteType(path: 'about', view: AboutStub::class, skip_build: true),
         );
 
-        $this->assertSame(['', 'about'], array_column($routes, 'path'));
-        $this->assertSame([HomeStub::class, AboutStub::class], array_column($routes, 'view'));
-        $this->assertSame([false, true], array_column($routes, 'skip_build'));
+        $this->assertSame(['', 'about'], array_column(Route::$routes, 'path'));
+        $this->assertSame([HomeStub::class, AboutStub::class], array_column(Route::$routes, 'view'));
+        $this->assertSame([false, true], array_column(Route::$routes, 'skip_build'));
     }
 
     #[Test]
     public function it_adds_to_the_routes_already_registered(): void
     {
-        global $routes;
-
         Route::create(new RouteType(path: '', view: HomeStub::class));
         Route::create(new RouteType(path: 'about', view: AboutStub::class));
 
-        $this->assertSame(['', 'about'], array_column($routes, 'path'));
+        $this->assertSame(['', 'about'], array_column(Route::$routes, 'path'));
     }
 
     #[Test]

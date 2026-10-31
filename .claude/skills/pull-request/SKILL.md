@@ -12,7 +12,7 @@ description: Write the current branch's PR description in the house format (Titl
 3. Check for an existing PR with `gh pr view --json number,state,url`. If one is `OPEN` for this branch, **stop**: report its number and URL, print the description for manual copy-paste, and do not edit or create anything. Re-running against a live PR is the user's call, not the skill's. An error saying no PR exists, or a closed or merged one, means carry on.
 4. Base the description on the real branch contents: `git log main..HEAD` and `git diff -M main..HEAD`. Describe everything in the branch, not just work from the current conversation. If `git log main..HEAD` is empty, stop — the branch has no commits to propose.
    - Start from `git diff -M --stat main..HEAD`. `-M` shows moved files as renames rather than a delete and an add.
-   - Don't read the SVGs under `phossil/img/heroicons/` or anything in `dist/`. Summarize icon changes by count.
+   - Don't read the SVGs under `resources/heroicons/` or anything in `dist/`. Summarize icon changes by count.
 
 ## Checks
 
@@ -22,7 +22,7 @@ These checks are what the Tests section reports. Run them all and keep each one'
 2. `pnpm format:check` — oxfmt over JS, CSS, JSON and Markdown.
 3. `docker compose exec -T php php -l <file>` for each PHP file the branch adds or changes.
 4. `composer test` — the PHPUnit suite in `tests/`, run in the php container. Keep the test and assertion counts it ends with. If it reports no tests or can't find `phpunit.xml`, the container predates the `tests/` mount: ask the user to run `docker compose up -d` and try again.
-5. `composer build` — renders every route and the 404 page through nginx, and fails on any unexpected status. It writes only to `dist/` and `phossil/dist/`, which are gitignored, so the tree stays clean.
+5. `composer build` — renders every route and the 404 page through nginx, and fails on any unexpected status. It writes only to `dist/` and `app/dist/`, which are gitignored, so the tree stays clean.
 
 Checks 3 to 5 need the containers. If `docker compose ps` shows they aren't running, ask the user to start them with `docker compose up -d` rather than starting them yourself. If any check fails, stop and show the user its output. Don't describe a branch that doesn't build.
 

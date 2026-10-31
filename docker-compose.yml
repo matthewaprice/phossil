@@ -12,7 +12,7 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./phossil:/srv/phossil:ro
+      - ./app:/srv/app:ro
       - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - php
@@ -23,7 +23,10 @@ services:
     ports:
       - "5173:5173"
     volumes:
-      - ./phossil:/srv/phossil
+      - ./app:/srv/app
+      # phossil's components, for Tailwind's classes, and the dialog script.
+      - ./src:/srv/src:ro
+      - ./resources:/srv/resources:ro
       - ./vite.config.js:/srv/vite.config.js:ro
       - ./package.json:/srv/package.json:ro
       - ./pnpm-lock.yaml:/srv/pnpm-lock.yaml:ro
